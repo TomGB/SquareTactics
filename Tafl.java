@@ -2,6 +2,7 @@ import java.io.PrintWriter;
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 
 class Tafl {
 	boolean selected=false, whiteTurn=false, blackWin=false, whiteWin=false;
@@ -12,6 +13,7 @@ class Tafl {
 	int boardHeight = 8;
 	Board board = new Board(boardWidth,boardHeight);
 	UserInteraction myGUI;
+	ArrayList<BoardMoves> possibleMoves = new ArrayList<BoardMoves>();
 
 	public Tafl(){
 		board.clear();
@@ -42,17 +44,17 @@ class Tafl {
 				selY=posY;
 				selected=true;
 				selectedPiece=board.get(selX,selY);
+				displayPieceMoves();
 			}else if(selected){
-				Piece original = board.get(selX,selY);
-				original.hasMoved = true;
-				if(board.validMove(selX, selY, posX, posY, original)){ //move piece
+				selectedPiece.hasMoved = true;
+				if(board.validMove(selX, selY, posX, posY, selectedPiece)){ //move piece
 					if(board.get(posX,posY)!=null){
 						myGUI.playSound();
 					}
 					board.turnNum++;
 					board.saveHistory();
 					whiteTurn = !whiteTurn;
-					board.set(posX,posY,original);
+					board.set(posX,posY,selectedPiece);
 					board.set(selX,selY,null);
 					selected=false;
 					blackWin=board.checkKing();
@@ -61,6 +63,68 @@ class Tafl {
 			}
 		}
 		myGUI.repaint();
+	}
+
+	public void displayPieceMoves(){
+		possibleMoves.clear();
+		for (Move move : selectedPiece.moves) {
+
+			boolean possibleSeccond = false;
+			int i = 1;
+			int tempX = selX;
+			int tempY = selY;
+
+			boolean endLoop = false;
+
+			while(!endLoop){
+				if(selectedPiece.getColor()=='w'){
+					tempX = tempX-move.y;
+					tempY = tempY-move.x;
+				}else{
+					tempX = tempX+move.y;
+					tempY = tempY+move.x;
+				}
+
+				if(selectedPiece.wrapping){
+					if(tempY >= 8){
+						tempY = tempY-8;
+					}else if(tempY < 0){
+						tempY = tempY+8;
+					}
+				}
+
+				if(move.moveType=="Jump"||move.moveType=="Step") {
+					if(i==2&&!(((move.doubleFirst&&!selectedPiece.hasMoved)||(selectedPiece.doubleMove))&&possibleSeccond)){
+						endLoop = true;
+					}else if(i>2){
+						endLoop = true;
+					}
+				}
+
+				if(tempX>7||tempX<0){
+					p("out of bounds");
+					endLoop=true;
+				}else if(!endLoop){
+
+					if(board.get(tempX,tempY)==null){
+						if(!move.canOnlyCapture()){
+							possibleMoves.add(new BoardMoves(tempX, tempY, move.moveType));
+							p("empty space");
+							possibleSeccond = true;
+						}
+					}else if(board.get(tempX,tempY).getColor()==selectedPiece.getColor()){
+						endLoop=true;
+						p("friendly");
+					}else if(!move.canOnlyMove()&&board.get(tempX,tempY).getColor()!=selectedPiece.getColor()){
+						possibleMoves.add(new BoardMoves(tempX, tempY, move.moveType));
+						endLoop=true;
+						p("enemy");
+					}
+				}
+				p(endLoop);
+				i++;
+			}
+		}
 	}
 
 	public void undo(){

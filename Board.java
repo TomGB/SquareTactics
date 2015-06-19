@@ -6,7 +6,7 @@ class Board {
 	int width, height;
 	int turnNum;
 
-	ArrayList<String> history;;
+	ArrayList<Piece[][]> history;
 
 	public Board(int _width, int _height){
 		width = _width;
@@ -21,7 +21,7 @@ class Board {
 		}
 	}
 	public void setUp(){
-		history = new ArrayList<String>();
+		history = new ArrayList<Piece[][]>();
 		turnNum=0;
 
 
@@ -219,22 +219,21 @@ class Board {
 		return false;
 	}
 	public void saveHistory(){
-		// String temp = "";
-		// for (int i=0; i<width; i++) {
-		// 	for (int j=0; j<height; j++) {
-		// 		temp+=pieces[i][j].getColor();
-		// 	}
-		// }
-		// history.add(temp);
+		Piece[][] temp = new Piece[pieces.length][pieces[0].length];
+		   
+		for (int i=0; i<width; i++) {
+			for (int j=0; j<height; j++) {
+				Piece p = pieces[i][j];
+			    if (p != null) {
+			        temp[i][j] = new Piece(p);
+			    }
+			}
+		}
+		history.add(temp);
 	}
 	public void loadHistory(){
-		// String temp = history.remove(--turnNum);
-		// for (int i=0; i<width; i++) {
-		// 	for (int j=0; j<height; j++) {
-		// 		pieces[i][j]=temp.charAt(height*i+j);
-		// 	}
-		// }
-		// p("history loaded");
+		pieces = history.remove(--turnNum);
+		p("history loaded");
 	}
 
 	public static void p(Object o){System.out.println(o);}

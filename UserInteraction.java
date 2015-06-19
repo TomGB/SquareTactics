@@ -129,8 +129,8 @@ public class UserInteraction extends JFrame{
 				}
 
 				if(tafl.selected){
-					for (Move move : tafl.selectedPiece.moves) {
-
+					for (int i=0; i<tafl.possibleMoves.size(); i++) {
+						BoardMoves move = tafl.possibleMoves.get(i);
 						if(move.moveType=="Jump"){
 							g.setColor(new Color(200,200,0,50));
 						}else if(move.moveType=="Step"){
@@ -138,116 +138,7 @@ public class UserInteraction extends JFrame{
 						}else if(move.moveType=="Slide"){
 							g.setColor(new Color(200,0,0,50));
 						}
-
-						if(move.moveType=="Jump"||move.moveType=="Step"){
-
-							boolean possibleSeccond = false;
-
-							int tempX = 0;
-							int tempY = 0;
-
-							if(tafl.selectedPiece.getColor()=='w'){
-								tempX = tafl.selX-move.y;
-								tempY = tafl.selY-move.x;
-							}else{
-								tempX = tafl.selX+move.y;
-								tempY = tafl.selY+move.x;
-							}
-
-							if(tafl.selectedPiece.wrapping){
-								if(tempY >= 8){
-									tempY = tempY-8;
-								}else if(tempY < 0){
-									tempY = tempY+8;
-								}
-							}else if(tempX>=0&&tempX<8&&tempY>=0&&tempY<8){
-								if(tafl.board.get(tempX,tempY)==null){
-									if(!move.canOnlyCapture()){
-										g.fillRect(50+gridSpace*tempX,50+gridSpace*tempY,gridSpace,gridSpace);
-										possibleSeccond = true;
-									}
-							    }else if(!move.canOnlyMove()&&tafl.board.get(tempX,tempY).getColor()!=tafl.selectedPiece.getColor()){
-							    	g.fillRect(50+gridSpace*tempX,50+gridSpace*tempY,gridSpace,gridSpace);
-							    }
-							}
-
-							if(((move.doubleFirst&&!tafl.selectedPiece.hasMoved)||(tafl.selectedPiece.doubleMove))&&possibleSeccond){
-								if(tafl.selectedPiece.getColor()=='w'){
-									tempX = tafl.selX-move.y*2;
-									tempY = tafl.selY-move.x*2;
-								}else{
-									tempX = tafl.selX+move.y*2;
-									tempY = tafl.selY+move.x*2;
-								}
-
-								if(tafl.selectedPiece.wrapping){
-									if(tempY >= 8){
-										tempY = tempY-8;
-									}else if(tempY < 0){
-										tempY = tempY+8;
-									}
-								}else if(tempX>=0&&tempX<8&&tempY>=0&&tempY<8){
-									if(tafl.board.get(tempX,tempY)==null){
-										if(!move.canOnlyCapture()){
-											g.fillRect(50+gridSpace*tempX,50+gridSpace*tempY,gridSpace,gridSpace);
-										}
-								    }else if(!move.canOnlyMove()&&tafl.board.get(tempX,tempY).getColor()!=tafl.selectedPiece.getColor()){
-								    	g.fillRect(50+gridSpace*tempX,50+gridSpace*tempY,gridSpace,gridSpace);
-								    }
-								}
-							}
-						}else if(move.moveType=="Slide"){
-							int i = 1;
-							int tempX = tafl.selX;
-							int tempY = tafl.selY;
-
-							boolean endLoop = false;
-
-							while(!endLoop){
-								if(tafl.selectedPiece.getColor()=='w'){
-									tempX = tempX-move.y;
-									tempY = tempY-move.x;
-								}else{
-									tempX = tempX+move.y;
-									tempY = tempY+move.x;
-								}
-
-								if(tafl.selectedPiece.wrapping){
-									if(tempY >= 8){
-										tempY = tempY-8;
-									}else if(tempY < 0){
-										tempY = tempY+8;
-									}
-								}else{
-									if(tempY > 7){
-										endLoop = true;
-									}else if(tempY<0){
-										endLoop = true;
-									}
-								}
-
-								if(tempX>7||tempX<0){
-									endLoop=true;
-								}else if(!endLoop){
-									if(tafl.board.get(tempX,tempY)==null){
-										g.fillRect(50+gridSpace*tempX,50+gridSpace*tempY,gridSpace,gridSpace);
-										p("empty space");
-									}else if(tafl.board.get(tempX,tempY).getColor()==tafl.selectedPiece.getColor()){
-										endLoop=true;
-										p("friendly");
-									}else{
-										g.fillRect(50+gridSpace*tempX,50+gridSpace*tempY,gridSpace,gridSpace);
-										endLoop=true;
-										p("enemy");
-									}
-								}
-
-								p(endLoop);
-
-								
-								i++;
-							}	
-						}
+						g.fillRect(50+gridSpace*move.x,50+gridSpace*move.y,gridSpace,gridSpace);
 					}
 				}
 

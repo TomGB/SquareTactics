@@ -14,6 +14,15 @@ class Piece {
 
 	boolean hasMoved = false;
 
+	public Piece(Piece oldPiece){
+		color = oldPiece.color;
+		name = oldPiece.name;
+		moves = oldPiece.moves;
+		wrapping = oldPiece.wrapping;
+		doubleMove = oldPiece.doubleMove;
+		hasMoved = oldPiece.hasMoved;
+	}
+
 	public Piece(char _color, char _name, List<Move> _moves){
 		color = _color;
 		name = _name;
