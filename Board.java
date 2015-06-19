@@ -34,49 +34,49 @@ class Board {
 			new Move(0,1,"Step"),new Move(0,-1,"Step"),new Move(1,1,"Step"),new Move(1,0,"Step"),new Move(1,-1,"Step"),new Move(-1,0,"Step"),new Move(-1,1,"Step"),new Move(-1,-1,"Step")
 		);
 
-		// List<Move> queenMoves = Arrays.asList(
-		// 	new Move(1,1,"Slide"),new Move(1,0,"Slide"),
-		// 	new Move(1,-1,"Slide"),new Move(0,-1,"Slide"),
-		// 	new Move(-1,-1,"Slide"),new Move(-1,0,"Slide"),
-		// 	new Move(-1,1,"Slide"),new Move(0,1,"Slide")
-		// );
-
-		// List<Move> castleMoves = Arrays.asList(
-		// 	new Move(1,0,"Slide"),new Move(0,1,"Slide"),
-		// 	new Move(-1,0,"Slide"),new Move(0,-1,"Slide")
-		// );
-
-		// List<Move> horseMoves = Arrays.asList(
-		// 	new Move(2,-1,"Jump"),new Move(2,1,"Jump"),new Move(1,2,"Jump"),new Move(-1,2,"Jump"),new Move(-2,1,"Jump"),new Move(-2,-1,"Jump"),new Move(1,-2,"Jump"),new Move(-1,-2,"Jump")
-		// );
-
-		// List<Move> bishopMoves = Arrays.asList(
-		// 	new Move(1,1,"Slide"),new Move(-1,1,"Slide"),
-		// 	new Move(-1,-1,"Slide"),new Move(1,-1,"Slide")
-		// );
-
 		List<Move> queenMoves = Arrays.asList(
-		 new Move(0,2,"Jump"),new Move(-1,2,"Jump"),new Move(1,2,"Jump"),
-			new Move(0,-2,"Jump"),new Move(-1,-2,"Jump"),new Move(1,-2,"Jump"),
-			new Move(2,0,"Jump"),new Move(2,-1,"Jump"),new Move(2,1,"Jump"),
-			new Move(-2,0,"Jump"),new Move(-2,-1,"Jump"),new Move(-2,1,"Jump")
+			new Move(1,1,"Slide"),new Move(1,0,"Slide"),
+			new Move(1,-1,"Slide"),new Move(0,-1,"Slide"),
+			new Move(-1,-1,"Slide"),new Move(-1,0,"Slide"),
+			new Move(-1,1,"Slide"),new Move(0,1,"Slide")
 		);
 
-
 		List<Move> castleMoves = Arrays.asList(
-			new Move(0,1,"Step"),new Move(0,-1,"Step"),new Move(1,0,"Step"),new Move(-1,0,"Step"),new Move(-2,-2,"Jump"),new Move(-2,2,"Jump"),new Move(2,-2,"Jump"),new Move(2,2,"Jump")
+			new Move(1,0,"Slide"),new Move(0,1,"Slide"),
+			new Move(-1,0,"Slide"),new Move(0,-1,"Slide")
 		);
 
 		List<Move> horseMoves = Arrays.asList(
-			new Move(1,1,"Step"),new Move(1,-1,"Step"),new Move(-1,1,"Step"),new Move(-1,-1,"Step"),
-			new Move(2,2,"Jump"),new Move(0,2,"Jump"),new Move(-2,2,"Jump"),new Move(2,0,"Jump"),new Move(-2,0,"Jump"),new Move(0,-2,"Jump")
+			new Move(2,-1,"Jump"),new Move(2,1,"Jump"),new Move(1,2,"Jump"),new Move(-1,2,"Jump"),new Move(-2,1,"Jump"),new Move(-2,-1,"Jump"),new Move(1,-2,"Jump"),new Move(-1,-2,"Jump")
 		);
-		
 
 		List<Move> bishopMoves = Arrays.asList(
-			new Move(-1,-1,"Step"),new Move(1,-1,"Step"),
-			new Move(-1,1,"Slide"),new Move(1,1,"Slide")
+			new Move(1,1,"Slide"),new Move(-1,1,"Slide"),
+			new Move(-1,-1,"Slide"),new Move(1,-1,"Slide")
 		);
+
+		// List<Move> queenMoves = Arrays.asList(
+		//  new Move(0,2,"Jump"),new Move(-1,2,"Jump"),new Move(1,2,"Jump"),
+		// 	new Move(0,-2,"Jump"),new Move(-1,-2,"Jump"),new Move(1,-2,"Jump"),
+		// 	new Move(2,0,"Jump"),new Move(2,-1,"Jump"),new Move(2,1,"Jump"),
+		// 	new Move(-2,0,"Jump"),new Move(-2,-1,"Jump"),new Move(-2,1,"Jump")
+		// );
+
+
+		// List<Move> castleMoves = Arrays.asList(
+		// 	new Move(0,1,"Step"),new Move(0,-1,"Step"),new Move(1,0,"Step"),new Move(-1,0,"Step"),new Move(-2,-2,"Jump"),new Move(-2,2,"Jump"),new Move(2,-2,"Jump"),new Move(2,2,"Jump")
+		// );
+
+		// List<Move> horseMoves = Arrays.asList(
+		// 	new Move(1,1,"Step"),new Move(1,-1,"Step"),new Move(-1,1,"Step"),new Move(-1,-1,"Step"),
+		// 	new Move(2,2,"Jump"),new Move(0,2,"Jump"),new Move(-2,2,"Jump"),new Move(2,0,"Jump"),new Move(-2,0,"Jump"),new Move(0,-2,"Jump")
+		// );
+		
+
+		// List<Move> bishopMoves = Arrays.asList(
+		// 	new Move(-1,-1,"Step"),new Move(1,-1,"Step"),
+		// 	new Move(-1,1,"Slide"),new Move(1,1,"Slide")
+		// );
 
 		for (int i=0; i<8; i++) {
 			set(1,i,new Piece('b','p',pawnMoves));
@@ -109,7 +109,7 @@ class Board {
 		try{
 			return pieces[x][y];
 		}catch(Exception e){
-			p("out of bounds "+e);
+			// p("out of bounds "+e);
 			return null;
 		}
 	}
@@ -137,7 +137,7 @@ class Board {
 		}
 		
 	}
-	public boolean validMove(int x1, int y1, int x2, int y2, Piece piece){
+	// public boolean validMove(int x1, int y1, int x2, int y2, Piece piece){
 		// if(get(x2,y2)!=null){
 		// 	return false;
 		// }
@@ -163,8 +163,8 @@ class Board {
 		// if(piece.getColor()!='k'&&isKingSpace(x2,y2)){
 		// 	return false;
 		// }
-		return true;
-	}
+	// 	return true;
+	// }
 	public boolean isKingSpace(int x, int y){
 		return ((x==0&&y==0)||(x==0&&y==height-1)||(x==width-1&&y==0)||(x==width-1&&y==height-1)||(x==width/2&&y==height/2));
 	}

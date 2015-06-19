@@ -128,6 +128,14 @@ public class UserInteraction extends JFrame{
 					}
 				}
 
+				if(tafl.pinningKing.size()>0){
+					g.setColor(new Color(255,0,0,150));
+					for (BoardMoves location: tafl.pinningKing) {
+						p("pinning: "+location.x+" "+location.y);
+						g.fillRect(50+gridSpace*location.x,50+gridSpace*location.y,gridSpace,gridSpace);
+					}
+				}
+
 				if(tafl.selected){
 					for (int i=0; i<tafl.possibleMoves.size(); i++) {
 						BoardMoves move = tafl.possibleMoves.get(i);
@@ -238,11 +246,15 @@ public class UserInteraction extends JFrame{
 		g.drawImage(chessPieces[imageNum],50+gridSpace*i+18,50+gridSpace*j,gridSpace-34,gridSpace,null);
 	}
 	public void setKey(boolean state, int key){
-			 if(key==87){	up=state;}
-		else if(key==83){	down=state;}
-		else if(key==65){	left=state;}
-		else if(key==68){	right=state;}
-		else if(key==32){	space=state;}
+		// 	 if(key==87){	up=state;}
+		// else if(key==83){	down=state;}
+		// else if(key==65){	left=state;}
+		// else if(key==68){	right=state;}
+		// else if(key==32){	space=state;}
+		if(key==68){
+			tafl.debug=state;
+			p("Debug set: "+tafl.debug);
+		} // d key
 	}
 	public void setMouse(int _mX, int _mY){
 		mX=_mX;

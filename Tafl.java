@@ -5,7 +5,8 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 class Tafl {
-	boolean selected=false, whiteTurn=false, blackWin=false, whiteWin=false;
+	boolean selected=false, whiteTurn=true, blackWin=false, whiteWin=false, debug=false, moveDebug = false;
+	ArrayList<BoardMoves> pinningKing = new ArrayList<BoardMoves>();
 	Piece selectedPiece=null;
 	int selX, selY;
 	boolean gameOver=false, rules=false;
@@ -39,24 +40,27 @@ class Tafl {
 				board.clear();
 				board.setUp();
 			}
-			if((!whiteTurn&&board.isBlack(posX,posY))||(whiteTurn&&board.isWhite(posX,posY))){
+			if((!whiteTurn&&board.isBlack(posX,posY))||(whiteTurn&&board.isWhite(posX,posY))||(debug&&(board.isBlack(posX,posY)||board.isWhite(posX,posY)))){
 				selX=posX;
 				selY=posY;
 				selected=true;
 				selectedPiece=board.get(selX,selY);
-				displayPieceMoves();
+				calculatePieceMoves(selectedPiece, selX, selY);
 			}else if(selected){
-				selectedPiece.hasMoved = true;
-				if(board.validMove(selX, selY, posX, posY, selectedPiece)){ //move piece
+				if(validMove(posX, posY)||debug){ //move piece
+					selectedPiece.hasMoved = true;
 					if(board.get(posX,posY)!=null){
 						myGUI.playSound();
 					}
 					board.turnNum++;
 					board.saveHistory();
-					whiteTurn = !whiteTurn;
 					board.set(posX,posY,selectedPiece);
 					board.set(selX,selY,null);
 					selected=false;
+					if(checkCheck()){
+						p("king in check");
+					}
+					whiteTurn = !whiteTurn;
 					blackWin=board.checkKing();
 					whiteWin=board.checkWin();
 				}
@@ -65,19 +69,45 @@ class Tafl {
 		myGUI.repaint();
 	}
 
-	public void displayPieceMoves(){
+	public boolean validMove(int x, int y){
+		for (BoardMoves move : possibleMoves) {
+			if(move.x==x&&move.y==y){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean checkCheck(){
+		pinningKing.clear();
+
+		for (int i=0; i<board.width; i++) {
+			for (int j=0; j<board.height; j++) {
+				Piece tempPiece = board.get(i,j);
+				if(tempPiece!=null){
+					if((whiteTurn&&tempPiece.getColor()=='w')||((!whiteTurn)&&tempPiece.getColor()=='b')){
+						calculatePieceMoves(tempPiece,i,j);
+					}
+				}
+			}
+		}
+
+		return pinningKing.size()!=0;
+	}
+
+	public void calculatePieceMoves(Piece currentPiece, int x, int y){
 		possibleMoves.clear();
-		for (Move move : selectedPiece.moves) {
+		for (Move move : currentPiece.moves) {
 
 			boolean possibleSeccond = false;
 			int i = 1;
-			int tempX = selX;
-			int tempY = selY;
+			int tempX = x;
+			int tempY = y;
 
 			boolean endLoop = false;
 
 			while(!endLoop){
-				if(selectedPiece.getColor()=='w'){
+				if(currentPiece.getColor()=='w'){
 					tempX = tempX-move.y;
 					tempY = tempY-move.x;
 				}else{
@@ -85,7 +115,7 @@ class Tafl {
 					tempY = tempY+move.x;
 				}
 
-				if(selectedPiece.wrapping){
+				if(currentPiece.wrapping){
 					if(tempY >= 8){
 						tempY = tempY-8;
 					}else if(tempY < 0){
@@ -94,34 +124,46 @@ class Tafl {
 				}
 
 				if(move.moveType=="Jump"||move.moveType=="Step") {
-					if(i==2&&!(((move.doubleFirst&&!selectedPiece.hasMoved)||(selectedPiece.doubleMove))&&possibleSeccond)){
+					if(i==2&&!(((move.doubleFirst&&!currentPiece.hasMoved)||(currentPiece.doubleMove))&&possibleSeccond)){
 						endLoop = true;
 					}else if(i>2){
 						endLoop = true;
 					}
 				}
 
-				if(tempX>7||tempX<0){
-					p("out of bounds");
+				if(tempX>7||tempX<0||tempY>7||tempY<0){
+					if(moveDebug){
+						p("out of bounds");
+					}
 					endLoop=true;
-				}else if(!endLoop){
+				}
+
+				if(!endLoop){
 
 					if(board.get(tempX,tempY)==null){
 						if(!move.canOnlyCapture()){
 							possibleMoves.add(new BoardMoves(tempX, tempY, move.moveType));
-							p("empty space");
+							if(moveDebug){
+								p("empty space");
+							}
 							possibleSeccond = true;
 						}
-					}else if(board.get(tempX,tempY).getColor()==selectedPiece.getColor()){
+					}else if(board.get(tempX,tempY).getColor()==currentPiece.getColor()){
 						endLoop=true;
-						p("friendly");
-					}else if(!move.canOnlyMove()&&board.get(tempX,tempY).getColor()!=selectedPiece.getColor()){
+						if(moveDebug){
+							p("friendly");
+						}
+					}else if(!move.canOnlyMove()&&board.get(tempX,tempY).getColor()!=currentPiece.getColor()){
 						possibleMoves.add(new BoardMoves(tempX, tempY, move.moveType));
 						endLoop=true;
-						p("enemy");
+						if(board.get(tempX,tempY).name=='k'){
+							pinningKing.add(new BoardMoves(x,y,"checkPiece"));
+						}
+						if(moveDebug){
+							p("enemy");
+						}
 					}
 				}
-				p(endLoop);
 				i++;
 			}
 		}
@@ -131,6 +173,9 @@ class Tafl {
 		if(board.turnNum>0){
 			whiteTurn = !whiteTurn;
 			board.loadHistory();
+			selected = false;
+			selectedPiece = null;
+			possibleMoves.clear();
 			myGUI.repaint();
 		}
 	}
