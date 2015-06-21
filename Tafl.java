@@ -7,6 +7,7 @@ import java.util.ArrayList;
 class Tafl {
 	boolean selected=false, whiteTurn=true, blackWin=false, whiteWin=false, debug=false, moveDebug = false;
 	ArrayList<BoardMoves> pinningKing = new ArrayList<BoardMoves>();
+	ArrayList<BoardMoves> pinningTemp = new ArrayList<BoardMoves>();
 	Piece selectedPiece=null;
 	int selX, selY;
 	boolean gameOver=false, rules=false;
@@ -24,6 +25,10 @@ class Tafl {
 
 	public void reset(){
 		board.clear();
+		selectedPiece = null;
+		selected = false;
+		pinningKing.clear();
+		possibleMoves = null;
 		board.setUp();
 		whiteTurn=false;
 		myGUI.repaint();
@@ -45,7 +50,8 @@ class Tafl {
 				selY=posY;
 				selected=true;
 				selectedPiece=board.get(selX,selY);
-				calculatePieceMoves(selectedPiece, selX, selY);
+				possibleMoves = calculatePieceMoves(selectedPiece, selX, selY, false);
+				simulatePieceMoves(whiteTurn?'b':'w');
 			}else if(selected){
 				if(validMove(posX, posY)||debug){ //move piece
 					selectedPiece.hasMoved = true;
@@ -57,8 +63,11 @@ class Tafl {
 					board.set(posX,posY,selectedPiece);
 					board.set(selX,selY,null);
 					selected=false;
-					if(checkCheck()){
+					if(checkCheck(false,whiteTurn?'w':'b')){
 						p("king in check");
+						if(checkCheckMate(whiteTurn?'b':'w')){
+							p("Check Mate!");
+						}
 					}
 					whiteTurn = !whiteTurn;
 					blackWin=board.checkKing();
@@ -67,6 +76,20 @@ class Tafl {
 			}
 		}
 		myGUI.repaint();
+	}
+
+	public void simulatePieceMoves(char color){
+		for (int i=possibleMoves.size()-1; i>=0; i--) {
+			board.turnNum++;
+			board.saveHistory();
+			board.set(possibleMoves.get(i).x,possibleMoves.get(i).y,selectedPiece);
+			board.set(selX,selY,null);
+			if(checkCheck(true,color)){
+				possibleMoves.remove(i);
+				// p("invalid move as the king could be captured");
+			}
+			board.loadHistory();
+		}
 	}
 
 	public boolean validMove(int x, int y){
@@ -78,25 +101,61 @@ class Tafl {
 		return false;
 	}
 
-	public boolean checkCheck(){
-		pinningKing.clear();
+	public boolean checkCheckMate(char color){
 
 		for (int i=0; i<board.width; i++) {
 			for (int j=0; j<board.height; j++) {
 				Piece tempPiece = board.get(i,j);
 				if(tempPiece!=null){
-					if((whiteTurn&&tempPiece.getColor()=='w')||((!whiteTurn)&&tempPiece.getColor()=='b')){
-						calculatePieceMoves(tempPiece,i,j);
+					if(tempPiece.getColor()==color){
+						selX=i;
+						selY=j;
+						selected=true;
+						selectedPiece=board.get(selX,selY);
+						possibleMoves = calculatePieceMoves(selectedPiece, selX, selY, false);
+						simulatePieceMoves(whiteTurn?'w':'b');
+						if(possibleMoves.size()>0){
+							p(tempPiece.name);
+							p(possibleMoves.size());
+							selected = false;
+							selectedPiece = null;
+							possibleMoves = null;
+							return false;
+						}
+					}
+				}
+			}
+		}
+		return true;
+	}
+
+	public boolean checkCheck(boolean simulated, char color){
+		if(simulated){
+			pinningTemp.clear();
+		}else{
+			pinningKing.clear();
+		}
+
+		for (int i=0; i<board.width; i++) {
+			for (int j=0; j<board.height; j++) {
+				Piece tempPiece = board.get(i,j);
+				if(tempPiece!=null){
+					if(tempPiece.getColor()==color){
+						calculatePieceMoves(tempPiece,i,j, simulated);
 					}
 				}
 			}
 		}
 
-		return pinningKing.size()!=0;
+		if(simulated){
+			return pinningTemp.size()!=0;
+		}else{
+			return pinningKing.size()!=0;
+		}
 	}
 
-	public void calculatePieceMoves(Piece currentPiece, int x, int y){
-		possibleMoves.clear();
+	public ArrayList<BoardMoves> calculatePieceMoves(Piece currentPiece, int x, int y, boolean simulated){
+		ArrayList<BoardMoves> tempMoves = new ArrayList<BoardMoves>();
 		for (Move move : currentPiece.moves) {
 
 			boolean possibleSeccond = false;
@@ -142,7 +201,7 @@ class Tafl {
 
 					if(board.get(tempX,tempY)==null){
 						if(!move.canOnlyCapture()){
-							possibleMoves.add(new BoardMoves(tempX, tempY, move.moveType));
+							tempMoves.add(new BoardMoves(tempX, tempY, move.moveType));
 							if(moveDebug){
 								p("empty space");
 							}
@@ -154,10 +213,15 @@ class Tafl {
 							p("friendly");
 						}
 					}else if(!move.canOnlyMove()&&board.get(tempX,tempY).getColor()!=currentPiece.getColor()){
-						possibleMoves.add(new BoardMoves(tempX, tempY, move.moveType));
+						tempMoves.add(new BoardMoves(tempX, tempY, move.moveType));
 						endLoop=true;
 						if(board.get(tempX,tempY).name=='k'){
-							pinningKing.add(new BoardMoves(x,y,"checkPiece"));
+							if(simulated){
+								pinningTemp.add(new BoardMoves(x,y,"checkPiece"));
+							}else{
+								pinningKing.add(new BoardMoves(x,y,"checkPiece"));
+								// p("added to pinning king array");
+							}
 						}
 						if(moveDebug){
 							p("enemy");
@@ -167,6 +231,7 @@ class Tafl {
 				i++;
 			}
 		}
+		return tempMoves;
 	}
 
 	public void undo(){
@@ -175,7 +240,11 @@ class Tafl {
 			board.loadHistory();
 			selected = false;
 			selectedPiece = null;
-			possibleMoves.clear();
+			possibleMoves = null;
+			selectedPiece = null;
+			selected = false;
+			pinningKing.clear();
+			possibleMoves = null;
 			myGUI.repaint();
 		}
 	}

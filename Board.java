@@ -233,7 +233,6 @@ class Board {
 	}
 	public void loadHistory(){
 		pieces = history.remove(--turnNum);
-		p("history loaded");
 	}
 
 	public static void p(Object o){System.out.println(o);}

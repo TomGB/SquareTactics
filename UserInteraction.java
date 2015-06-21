@@ -131,7 +131,7 @@ public class UserInteraction extends JFrame{
 				if(tafl.pinningKing.size()>0){
 					g.setColor(new Color(255,0,0,150));
 					for (BoardMoves location: tafl.pinningKing) {
-						p("pinning: "+location.x+" "+location.y);
+						// p("pinning: "+location.x+" "+location.y);
 						g.fillRect(50+gridSpace*location.x,50+gridSpace*location.y,gridSpace,gridSpace);
 					}
 				}
