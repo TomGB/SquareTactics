@@ -4,6 +4,8 @@ class Piece {
 
 	static int WRAPPING = 1, DOUBLEMOVE = 2;
 
+	int locX, locY;
+
 	char color;
 	char name ;
 	List<Move> moves;
@@ -15,6 +17,8 @@ class Piece {
 	boolean hasMoved = false;
 
 	public Piece(Piece oldPiece){
+		locX = oldPiece.locX;
+		locY = oldPiece.locY;
 		color = oldPiece.color;
 		name = oldPiece.name;
 		moves = oldPiece.moves;
@@ -42,6 +46,11 @@ class Piece {
 				doubleMove = true;
 			}
 		}
+	}
+
+	public void setLocation(int x, int y){
+		locX = x;
+		locY = y;
 	}
 
 	public char getColor(){

@@ -109,9 +109,9 @@ public class UserInteraction extends JFrame{
 				for (int i=0; i<tafl.board.width; i++) {
 					for (int j=0; j<tafl.board.height; j++) {
 
-						g.setColor(new Color(255,255,255,100));
+						g.setColor(new Color(255,255,255,200));
 						if(((i+j*8)+(j%2))%2==0){
-							g.setColor(new Color(100,100,100,100));
+							g.setColor(new Color(100,100,100,200));
 						}
 						g.fillRect(50+gridSpace*i,50+gridSpace*j,gridSpace,gridSpace);
 						g.setColor(Color.black);
@@ -136,7 +136,7 @@ public class UserInteraction extends JFrame{
 					}
 				}
 
-				if(tafl.selected){
+				if(tafl.selectedPiece!=null){
 					for (int i=0; i<tafl.possibleMoves.size(); i++) {
 						BoardMoves move = tafl.possibleMoves.get(i);
 						if(move.moveType=="Jump"){
@@ -150,9 +150,9 @@ public class UserInteraction extends JFrame{
 					}
 				}
 
-				if(tafl.blackWin){
+				if(tafl.checkMate&&!tafl.whiteTurn){
 					blackWinText.draw(true,g);
-				}else if(tafl.whiteWin){
+				}else if(tafl.checkMate&&tafl.whiteTurn){
 					whiteWinText.draw(true, g);
 				}else if(tafl.rules){
 					g.setColor(new Color(255,255,255,210));
@@ -187,7 +187,7 @@ public class UserInteraction extends JFrame{
 					reset.draw(true,g);
 					rules.draw(true,g);
 
-					if(tafl.selected){
+					if(tafl.selectedPiece!=null){
 						g.setColor(Color.blue);
 						g.drawRect(50+gridSpace*tafl.selX+selectSpacing,50+gridSpace*tafl.selY+selectSpacing,gridSpace-selectSpacing*2,gridSpace-selectSpacing*2);
 					}
@@ -259,7 +259,7 @@ public class UserInteraction extends JFrame{
 	public void setMouse(int _mX, int _mY){
 		mX=_mX;
 		mY=_mY;
-		if((!tafl.whiteWin && !tafl.blackWin&&undo.inside(mX,mY))||save.inside(mX,mY)||load.inside(mX,mY)||reset.inside(mX,mY)||rules.inside(mX,mY)){
+		if((!tafl.checkMate&&undo.inside(mX,mY))||save.inside(mX,mY)||load.inside(mX,mY)||reset.inside(mX,mY)||rules.inside(mX,mY)){
 			setCursor(new Cursor(Cursor.HAND_CURSOR));
 		}else{
 			setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -275,7 +275,7 @@ public class UserInteraction extends JFrame{
 			if(tempX<tafl.board.width && tempX>=0 && tempY<tafl.board.height && tempY>=0){
 				p("update call");
 				tafl.update((int)tempX,(int)tempY);
-			}else if(!tafl.whiteWin && !tafl.blackWin && undo.inside(mX,mY)){
+			}else if(!tafl.checkMate && undo.inside(mX,mY)){
 				p("undo clicked");
 				tafl.undo();
 			}else if(rules.inside(mX,mY)){

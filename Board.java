@@ -24,8 +24,6 @@ class Board {
 		history = new ArrayList<Piece[][]>();
 		turnNum=0;
 
-
-
 		List<Move> pawnMoves = Arrays.asList(
 			new Move(0,1,"Step", new int[]{Move.ONLYMOVE,Move.DOUBLEFIRST}),new Move(1,1,"Step", new int[]{Move.ONLYCAPTURE}),new Move(-1,1,"Step", new int[]{Move.ONLYCAPTURE})
 		);
@@ -102,121 +100,21 @@ class Board {
 		set(7,2,new Piece('w','b', bishopMoves	, new int[]{Piece.WRAPPING}));
 		set(7,5,new Piece('w','b', bishopMoves	, new int[]{Piece.WRAPPING}));
 	}
-	public boolean offBoard(int x,int y){
-		return !(x>=0&&x<width&&y>=0&&y<height);
-	}
 	public Piece get(int x,int y){
 		try{
 			return pieces[x][y];
 		}catch(Exception e){
-			// p("out of bounds "+e);
+			p("out of bounds get: "+e);
 			return null;
 		}
 	}
-	public void set(int x, int y, Piece _piece){
+	public void set(int x, int y, Piece piece){
 		try{
-			pieces[x][y]=_piece;
+			pieces[x][y]=piece;
+			piece.setLocation(x,y);
 		}catch(Exception e){
-
+			p("out of bounds set: "+e);
 		}
-	}
-	public boolean isBlack(int x, int y){
-		Piece tempPiece = get(x,y);
-		if(tempPiece==null){
-			return false;
-		}else{
-			return (tempPiece.getColor()=='b');
-		}
-	}
-	public boolean isWhite(int x, int y){
-		Piece tempPiece = get(x,y);
-		if(tempPiece==null){
-			return false;
-		}else{
-			return (tempPiece.getColor()=='w'||tempPiece.getColor()=='k');
-		}
-		
-	}
-	// public boolean validMove(int x1, int y1, int x2, int y2, Piece piece){
-		// if(get(x2,y2)!=null){
-		// 	return false;
-		// }
-		// if(x1==x2){ //piece moved in y axis
-		// 	int low = (y1<y2?y1:y2);
-		// 	int high = (y1>y2?y1:y2);
-		// 	for (int i=low+1; i<high; i++) {
-		// 		if(get(x1,i)!=null){
-		// 			return false;
-		// 		}
-		// 	}
-		// }else if(y1==y2){ //if piece moved in x axis
-		// 	int low = (x1<x2?x1:x2);
-		// 	int high = (x1>x2?x1:x2);
-		// 	for (int i=low+1; i<high; i++) {
-		// 		if(get(i,y1)!=null){
-		// 			return false;
-		// 		}
-		// 	}
-		// }else{ //if attempted to move diagonally
-			// return false;
-		// }
-		// if(piece.getColor()!='k'&&isKingSpace(x2,y2)){
-		// 	return false;
-		// }
-	// 	return true;
-	// }
-	public boolean isKingSpace(int x, int y){
-		return ((x==0&&y==0)||(x==0&&y==height-1)||(x==width-1&&y==0)||(x==width-1&&y==height-1)||(x==width/2&&y==height/2));
-	}
-	public boolean isEnemyKingSpace(int x, int y){
-		return ((x==0&&y==0)||(x==0&&y==height-1)||(x==width-1&&y==0)||(x==width-1&&y==height-1)||(x==width/2&&y==height/2&&!(get(x,y).getColor()=='k')));
-	}
-	// public void takePieces(int x, int y, Piece piece){
-	// 	if(y<width-2&&isEnemyPawn(get(x, y+1), piece)&&(isFriend(x, y+2, piece)||isEnemyKingSpace(x,y+2))){
-	// 		set(x, y+1, null);
-	// 	}
-	// 	if(x<width-2&&isEnemyPawn(get(x+1, y), piece)&&(isFriend(x+2, y, piece)||isEnemyKingSpace(x+2,y))){
-	// 		set(x+1, y, null);
-	// 	}
-	// 	if(y>1&&isEnemyPawn(get(x, y-1), piece)&&(isFriend(x, y-2, piece)||isEnemyKingSpace(x,y-2))){
-	// 		set(x, y-1, null);
-	// 	}
-	// 	if(x>1&&isEnemyPawn(get(x-1, y), piece)&&(isFriend(x-2, y, piece)||isEnemyKingSpace(x-2,y))){
-	// 		set(x-1, y, null);
-	// 	}
-	// }
-	public boolean isEnemyPawn(Piece piece2, Piece piece){
-		if(piece2!=null){
-			return ((piece2.getColor()=='b'&&(piece.getColor()=='w'||piece.getColor()=='k')))||(piece2.getColor()=='w'&&piece.getColor()=='b');
-		}else{
-			return false;
-		}
-	}
-	public boolean isFriend(int x, int y, Piece piece){
-		char color = piece.getColor();
-		Piece tempPiece = get(x,y);
-		if(tempPiece==null){
-			return false;
-		}else{
-			return ((get(x,y).getColor()=='b'&&color=='b')||((get(x,y).getColor()=='w'||get(x,y).getColor()=='k')&&(color=='w'||color=='k')));
-		}
-	}
-	public boolean checkKing(){
-		return false;
-	}
-	public boolean checkWin(){
-		for (int i=0; i<width; i++) {
-			for (int j=0; j<height; j++) {
-				Piece tempPiece = get(i,j);
-				if(tempPiece!=null&&tempPiece.getColor()=='k'){
-					if(i==width/2&&j==height/2){
-						return false;
-					}
-					return(isKingSpace(i,j));
-				}
-			}
-		}
-		return false;
 	}
 	public void saveHistory(){
 		Piece[][] temp = new Piece[pieces.length][pieces[0].length];
@@ -233,6 +131,14 @@ class Board {
 	}
 	public void loadHistory(){
 		pieces = history.remove(--turnNum);
+		for (int i=0; i<pieces.length; i++) {
+			for (int j=0; j<pieces.length; j++) {
+				Piece tempPiece = get(i,j);
+				if(tempPiece!=null){
+					tempPiece.setLocation(i,j);
+				}
+			}
+		}
 	}
 
 	public static void p(Object o){System.out.println(o);}

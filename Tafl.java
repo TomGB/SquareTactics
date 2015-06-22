@@ -5,17 +5,20 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 class Tafl {
-	boolean selected=false, whiteTurn=true, blackWin=false, whiteWin=false, debug=false, moveDebug = false;
+
+	UserInteraction myGUI;
+
+	int boardWidth = 8, boardHeight = 8;
+	Board board = new Board(boardWidth,boardHeight);
+
+	boolean whiteTurn=true, rules=false, checkMate = false;
+	boolean debug=false, moveDebug = false;
 	ArrayList<BoardMoves> pinningKing = new ArrayList<BoardMoves>();
 	ArrayList<BoardMoves> pinningTemp = new ArrayList<BoardMoves>();
+	ArrayList<BoardMoves> possibleMoves = new ArrayList<BoardMoves>();
+
 	Piece selectedPiece=null;
 	int selX, selY;
-	boolean gameOver=false, rules=false;
-	int boardWidth = 8;
-	int boardHeight = 8;
-	Board board = new Board(boardWidth,boardHeight);
-	UserInteraction myGUI;
-	ArrayList<BoardMoves> possibleMoves = new ArrayList<BoardMoves>();
 
 	public Tafl(){
 		board.clear();
@@ -26,7 +29,6 @@ class Tafl {
 	public void reset(){
 		board.clear();
 		selectedPiece = null;
-		selected = false;
 		pinningKing.clear();
 		possibleMoves = null;
 		board.setUp();
@@ -34,25 +36,31 @@ class Tafl {
 		myGUI.repaint();
 	}
 
+	/*
+	This method is called whenever the mouse is clicked,
+	If no piece is selected then allow the selection of a piece that is the color of the current person's turn.
+	If a piece is selected then the destination click is checked using the validMove method.
+	Then a check for check and checkMate is carried out.
+	Finally the GUI is re drawn.
+	 */
 	public void update(int posX, int posY){ //if left button clicked
 		if(rules){
 			rules=false;
 		}else{
-			if(whiteWin||blackWin){ //reset if game has ended
-				whiteTurn=false;
-				whiteWin=false;
-				blackWin=false;
+			if(checkMate){ //reset if game has ended
+				whiteTurn=true;
+				checkMate=false;
 				board.clear();
 				board.setUp();
 			}
-			if((!whiteTurn&&board.isBlack(posX,posY))||(whiteTurn&&board.isWhite(posX,posY))||(debug&&(board.isBlack(posX,posY)||board.isWhite(posX,posY)))){
+			Piece tempPiece = board.get(posX,posY);
+			if(tempPiece!=null&&(tempPiece.color==(whiteTurn?'w':'b')||debug)){
 				selX=posX;
 				selY=posY;
-				selected=true;
-				selectedPiece=board.get(selX,selY);
+				selectedPiece=tempPiece;
 				possibleMoves = calculatePieceMoves(selectedPiece, selX, selY, false);
 				simulatePieceMoves(whiteTurn?'b':'w');
-			}else if(selected){
+			}else if(selectedPiece != null){
 				if(validMove(posX, posY)||debug){ //move piece
 					selectedPiece.hasMoved = true;
 					if(board.get(posX,posY)!=null){
@@ -62,22 +70,27 @@ class Tafl {
 					board.saveHistory();
 					board.set(posX,posY,selectedPiece);
 					board.set(selX,selY,null);
-					selected=false;
 					if(checkCheck(false,whiteTurn?'w':'b')){
 						p("king in check");
 						if(checkCheckMate(whiteTurn?'b':'w')){
 							p("Check Mate!");
 						}
 					}
+					selectedPiece = null;
 					whiteTurn = !whiteTurn;
-					blackWin=board.checkKing();
-					whiteWin=board.checkWin();
 				}
 			}
 		}
 		myGUI.repaint();
 	}
 
+	/*
+	This method uses the possibleMoves array list.
+	It simulates moving the selected piece to each space it can usually move to.
+	Then checkCheck is run to see if the movement of this piece has cleared a path
+	for the King to be taken. If a path has been cleared then this is an invalid move
+	and it is removed from the possibleMoves array.
+	 */
 	public void simulatePieceMoves(char color){
 		for (int i=possibleMoves.size()-1; i>=0; i--) {
 			board.turnNum++;
@@ -92,6 +105,10 @@ class Tafl {
 		}
 	}
 
+	/*
+	Input a position x and y that you wish to move your piece to.
+	This method returns if this move is in the possibleMoves array list.
+	 */
 	public boolean validMove(int x, int y){
 		for (BoardMoves move : possibleMoves) {
 			if(move.x==x&&move.y==y){
@@ -101,34 +118,11 @@ class Tafl {
 		return false;
 	}
 
-	public boolean checkCheckMate(char color){
-
-		for (int i=0; i<board.width; i++) {
-			for (int j=0; j<board.height; j++) {
-				Piece tempPiece = board.get(i,j);
-				if(tempPiece!=null){
-					if(tempPiece.getColor()==color){
-						selX=i;
-						selY=j;
-						selected=true;
-						selectedPiece=board.get(selX,selY);
-						possibleMoves = calculatePieceMoves(selectedPiece, selX, selY, false);
-						simulatePieceMoves(whiteTurn?'w':'b');
-						if(possibleMoves.size()>0){
-							p(tempPiece.name);
-							p(possibleMoves.size());
-							selected = false;
-							selectedPiece = null;
-							possibleMoves = null;
-							return false;
-						}
-					}
-				}
-			}
-		}
-		return true;
-	}
-
+	/*
+	This method uses the pinningTemp and pinningKing array lists.
+	For each piece calculate it's possible moves using calculatePieceMoves method.
+	If there are no pieces pinning the king return false.
+	 */
 	public boolean checkCheck(boolean simulated, char color){
 		if(simulated){
 			pinningTemp.clear();
@@ -154,6 +148,44 @@ class Tafl {
 		}
 	}
 
+	/*
+	This method utilizes the calcualtePieceMoves and the simulatePieceMoves methods.
+	It runs each of these methods to get the list of possibeMoves for each piece.
+	Then if there is no single legal move that a piece can take the game must be Checkmate.
+	 */
+	public boolean checkCheckMate(char color){
+
+		for (int i=0; i<board.width; i++) {
+			for (int j=0; j<board.height; j++) {
+				Piece tempPiece = board.get(i,j);
+				if(tempPiece!=null){
+					if(tempPiece.getColor()==color){
+						selX=i;
+						selY=j;
+						selectedPiece=board.get(selX,selY);
+						possibleMoves = calculatePieceMoves(selectedPiece, selX, selY, false);
+						simulatePieceMoves(whiteTurn?'w':'b');
+						if(possibleMoves.size()>0){
+							p(tempPiece.name);
+							p(possibleMoves.size());
+							selectedPiece = null;
+							possibleMoves = null;
+							return false;
+						}
+					}
+				}
+			}
+		}
+		return true;
+	}
+
+	/*
+	This method returns an array list of the legal moves that a piece can make
+	(not including moves that put their own king in check).
+	For each of the moves that a piece can do follow the movement path and save valid moves to the tempMoves array list.
+	If a piece could potentially capture the enemy king then add the location of this piece to the pinningKing array list.
+	return the array list of possible moves the piece can do.
+	 */
 	public ArrayList<BoardMoves> calculatePieceMoves(Piece currentPiece, int x, int y, boolean simulated){
 		ArrayList<BoardMoves> tempMoves = new ArrayList<BoardMoves>();
 		for (Move move : currentPiece.moves) {
@@ -238,11 +270,8 @@ class Tafl {
 		if(board.turnNum>0){
 			whiteTurn = !whiteTurn;
 			board.loadHistory();
-			selected = false;
 			selectedPiece = null;
 			possibleMoves = null;
-			selectedPiece = null;
-			selected = false;
 			pinningKing.clear();
 			possibleMoves = null;
 			myGUI.repaint();
