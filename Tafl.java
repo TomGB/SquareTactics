@@ -17,7 +17,8 @@ class Tafl {
 	ArrayList<BoardMoves> pinningTemp = new ArrayList<BoardMoves>();
 	ArrayList<BoardMoves> possibleMoves = new ArrayList<BoardMoves>();
 
-	Piece selectedPiece=null;
+	Piece selectedPiece = null;
+	Piece hoverPiece = null;
 	int selX, selY;
 
 	public Tafl(){
@@ -32,7 +33,7 @@ class Tafl {
 		pinningKing.clear();
 		possibleMoves = null;
 		board.setUp();
-		whiteTurn=false;
+		whiteTurn=true;
 		myGUI.repaint();
 	}
 
@@ -50,8 +51,7 @@ class Tafl {
 			if(checkMate){ //reset if game has ended
 				whiteTurn=true;
 				checkMate=false;
-				board.clear();
-				board.setUp();
+				reset();
 			}
 			Piece tempPiece = board.get(posX,posY);
 			if(tempPiece!=null&&(tempPiece.color==(whiteTurn?'w':'b')||debug)){
@@ -74,6 +74,7 @@ class Tafl {
 						p("king in check");
 						if(checkCheckMate(whiteTurn?'b':'w')){
 							p("Check Mate!");
+							checkMate=true;
 						}
 					}
 					selectedPiece = null;
@@ -130,15 +131,8 @@ class Tafl {
 			pinningKing.clear();
 		}
 
-		for (int i=0; i<board.width; i++) {
-			for (int j=0; j<board.height; j++) {
-				Piece tempPiece = board.get(i,j);
-				if(tempPiece!=null){
-					if(tempPiece.getColor()==color){
-						calculatePieceMoves(tempPiece,i,j, simulated);
-					}
-				}
-			}
+		for (Piece piece : board.getByColor(color)){
+			calculatePieceMoves(piece, piece.locX, piece.locY, simulated);
 		}
 
 		if(simulated){
@@ -155,25 +149,16 @@ class Tafl {
 	 */
 	public boolean checkCheckMate(char color){
 
-		for (int i=0; i<board.width; i++) {
-			for (int j=0; j<board.height; j++) {
-				Piece tempPiece = board.get(i,j);
-				if(tempPiece!=null){
-					if(tempPiece.getColor()==color){
-						selX=i;
-						selY=j;
-						selectedPiece=board.get(selX,selY);
-						possibleMoves = calculatePieceMoves(selectedPiece, selX, selY, false);
-						simulatePieceMoves(whiteTurn?'w':'b');
-						if(possibleMoves.size()>0){
-							p(tempPiece.name);
-							p(possibleMoves.size());
-							selectedPiece = null;
-							possibleMoves = null;
-							return false;
-						}
-					}
-				}
+		for (Piece piece : board.getByColor(color)){
+			selX=piece.locX;
+			selY=piece.locY;
+			selectedPiece=piece;
+			possibleMoves = calculatePieceMoves(piece, piece.locX, piece.locY, false);
+			simulatePieceMoves(whiteTurn?'w':'b');
+			if(possibleMoves.size()>0){
+				selectedPiece = null;
+				possibleMoves = null;
+				return false;
 			}
 		}
 		return true;
@@ -214,12 +199,9 @@ class Tafl {
 					}
 				}
 
-				if(move.moveType=="Jump"||move.moveType=="Step") {
-					if(i==2&&!(((move.doubleFirst&&!currentPiece.hasMoved)||(currentPiece.doubleMove))&&possibleSeccond)){
-						endLoop = true;
-					}else if(i>2){
-						endLoop = true;
-					}
+				if((move.moveType=="Jump"||move.moveType=="Step")&&
+					((i==2&&!(((move.doubleFirst&&!currentPiece.hasMoved)||(currentPiece.doubleMove))&&possibleSeccond))||i>2)) {
+					endLoop = true;
 				}
 
 				if(tempX>7||tempX<0||tempY>7||tempY<0){

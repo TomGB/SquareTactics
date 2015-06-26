@@ -12,11 +12,12 @@ public class UserInteraction extends JFrame{
 
 	boolean icons = false;
 
-	int sizeX=800, sizeY=800;
+	int sizeX=1200, sizeY=800;
+	int boardWidth = sizeX<sizeY?sizeX:sizeY;
 	Tafl tafl;
 	boolean mouseIsDown,up,down,left,right,space,showPow;
 	int mX=0,mY=0;
-	int gridSpace=(sizeY-100)/8;
+	int gridSpace=(boardWidth-100)/8;
 	int pieceRad = gridSpace/2;
 	int pieceSpace=pieceRad/2;
 	int selectSpacing=4;
@@ -88,12 +89,12 @@ public class UserInteraction extends JFrame{
 		save = new TextBox(550,10,80,40,"Save");
 		rules = new TextBox(640,10,80,40,"Rules");
 		undo = new TextBox(70,10,50,40,undoimg);
-		blackWinText = new TextBox((sizeX-textWidth)/2,(sizeY-textHeight)/2,textWidth,textHeight,"Black has Won");
-		whiteWinText = new TextBox((sizeX-textWidth)/2,(sizeY-textHeight)/2,textWidth,textHeight,"White has Won");
+		blackWinText = new TextBox((sizeX-textWidth)/2,(boardWidth-textHeight)/2,textWidth,textHeight,"Black has Won");
+		whiteWinText = new TextBox((sizeX-textWidth)/2,(boardWidth-textHeight)/2,textWidth,textHeight,"White has Won");
 		whiteTurnText = new TextBox(130,10,textWidth,textHeight,"White's Turn");
 		blackTurnText = new TextBox(130,10,textWidth,textHeight,"Black's Turn");
 
-		setResizable( false );
+		// setResizable( false );
 
 		JPanel drawing = new JPanel(){
 			public static final long serialVersionUID = 1L;
@@ -104,7 +105,7 @@ public class UserInteraction extends JFrame{
 				g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); //anti alias to make lines smooth
 				AffineTransform at = g2.getTransform();
 
-				g.drawImage(background,50,50,sizeX-100-3,sizeY-100-3,null);
+				g.drawImage(background,50,50,boardWidth-100-3,boardWidth-100-3,null);
 
 				for (int i=0; i<tafl.board.width; i++) {
 					for (int j=0; j<tafl.board.height; j++) {
@@ -150,9 +151,9 @@ public class UserInteraction extends JFrame{
 					}
 				}
 
-				if(tafl.checkMate&&!tafl.whiteTurn){
+				if(tafl.checkMate&&tafl.whiteTurn){
 					blackWinText.draw(true,g);
-				}else if(tafl.checkMate&&tafl.whiteTurn){
+				}else if(tafl.checkMate&&!tafl.whiteTurn){
 					whiteWinText.draw(true, g);
 				}else if(tafl.rules){
 					g.setColor(new Color(255,255,255,210));
@@ -264,6 +265,18 @@ public class UserInteraction extends JFrame{
 		}else{
 			setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		}
+
+		float tempX=((float)(mX-50)/gridSpace);
+		float tempY=((float)(mY-50)/gridSpace);
+		if(tempX<tafl.board.width && tempX>=0 && tempY<tafl.board.height && tempY>=0){
+			Piece temp = tafl.board.get((int)tempX,(int)tempY);
+			if(temp!=null){
+				if(tafl.hoverPiece!=temp){
+					tafl.hoverPiece = temp;
+					// p("Location: "+temp.locX+" "+temp.locY);
+				}
+			}
+		}
 	}
 	public void setMouse(boolean state){
 		if(state){
@@ -273,7 +286,7 @@ public class UserInteraction extends JFrame{
 			float tempX=((float)(mX-50)/gridSpace);
 			float tempY=((float)(mY-50)/gridSpace);
 			if(tempX<tafl.board.width && tempX>=0 && tempY<tafl.board.height && tempY>=0){
-				p("update call");
+				// p("update call");
 				tafl.update((int)tempX,(int)tempY);
 			}else if(!tafl.checkMate && undo.inside(mX,mY)){
 				p("undo clicked");

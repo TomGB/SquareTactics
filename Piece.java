@@ -1,5 +1,6 @@
 import java.util.List;
 import javax.swing.*;
+import java.util.ArrayList;
 class Piece {
 
 	static int WRAPPING = 1, DOUBLEMOVE = 2;
@@ -11,10 +12,12 @@ class Piece {
 	List<Move> moves;
 	boolean wrapping = false;
 	boolean doubleMove = false;
+	boolean alive = true;
 	
 	int[] abilities;
 
 	boolean hasMoved = false;
+	ArrayList<BoardMoves> possibleMoves = new ArrayList<BoardMoves>();
 
 	public Piece(Piece oldPiece){
 		locX = oldPiece.locX;
