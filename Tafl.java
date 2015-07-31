@@ -13,6 +13,8 @@ class Tafl {
 
 	boolean whiteTurn=true, rules=false, checkMate = false;
 	boolean debug=false, moveDebug = false;
+	// ArtificialPlayer ai;
+
 	ArrayList<BoardMoves> pinningKing = new ArrayList<BoardMoves>();
 	ArrayList<BoardMoves> pinningTemp = new ArrayList<BoardMoves>();
 	ArrayList<BoardMoves> possibleMoves = new ArrayList<BoardMoves>();
@@ -22,6 +24,7 @@ class Tafl {
 	int selX, selY;
 
 	public Tafl(){
+		// ai = new ArtificialPlayer(this);
 		board.clear();
 		board.setUp();
 		myGUI = new UserInteraction(this);
@@ -79,6 +82,9 @@ class Tafl {
 					}
 					selectedPiece = null;
 					whiteTurn = !whiteTurn;
+					// if(!whiteTurn){
+					// 	ai.takeTurn();
+					// }
 				}
 			}
 		}

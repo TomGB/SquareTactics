@@ -1,0 +1,1552 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"backgrou",
+				"background"
+			],
+			[
+				"for",
+				"fore	for (each)"
+			],
+			[
+				"Ar",
+				"ArrayList"
+			],
+			[
+				"de",
+				"debug"
+			],
+			[
+				"Board",
+				"BoardMoves"
+			],
+			[
+				"selec",
+				"selectedPiece"
+			],
+			[
+				"pos",
+				"possibleMoves"
+			],
+			[
+				"ab",
+				"abilities"
+			],
+			[
+				"draw",
+				"drawPieceImage"
+			],
+			[
+				"chess",
+				"chessPieces"
+			],
+			[
+				"temp",
+				"tempPiece"
+			],
+			[
+				"get",
+				"getColor"
+			],
+			[
+				"email",
+				"emailPrompt"
+			],
+			[
+				"password",
+				"passwordPrompt"
+			],
+			[
+				"local",
+				"localStorage"
+			],
+			[
+				"new",
+				"new_row"
+			],
+			[
+				"n",
+				"new_round"
+			],
+			[
+				"ty",
+				"type_set"
+			],
+			[
+				"user_se",
+				"user_set"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"backgroun",
+				"background-color"
+			],
+			[
+				"men",
+				"menu_open"
+			],
+			[
+				"list",
+				"list-style"
+			],
+			[
+				"sql",
+				"sql_vars"
+			],
+			[
+				"recip",
+				"recipient_email"
+			],
+			[
+				"background",
+				"background-image"
+			],
+			[
+				"inside",
+				"inside_set"
+			],
+			[
+				"savings",
+				"savingsTemp"
+			],
+			[
+				"our",
+				"our_price"
+			],
+			[
+				"jso",
+				"jsonData"
+			],
+			[
+				"file_",
+				"file_get_contents"
+			],
+			[
+				"exp",
+				"explode"
+			],
+			[
+				"json",
+				"json_decode"
+			],
+			[
+				"show",
+				"show_hide_rows"
+			],
+			[
+				"cur",
+				"cursor"
+			],
+			[
+				"group",
+				"groupid"
+			],
+			[
+				"confirm",
+				"confirm_round_page"
+			],
+			[
+				"select",
+				"select_round_page"
+			],
+			[
+				"sele",
+				"selected_round"
+			],
+			[
+				"jsn",
+				"json_encode"
+			],
+			[
+				"ba",
+				"background"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"f",
+				"font-size"
+			],
+			[
+				"inlne",
+				"inline-block"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"received",
+				"received_time"
+			],
+			[
+				"blo",
+				"block"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"backgorund",
+				"background-color"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"padding",
+				"padding-bottom"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"video",
+				"video_selection"
+			],
+			[
+				"book",
+				"book_selection"
+			],
+			[
+				"in_hand",
+				"in_hand_castle"
+			],
+			[
+				"in",
+				"in_hand_castle"
+			],
+			[
+				"place",
+				"place_tile"
+			],
+			[
+				"cast",
+				"castleCount"
+			],
+			[
+				"mouse",
+				"mouseStartY"
+			],
+			[
+				"ava",
+				"available_spaces"
+			],
+			[
+				"reso",
+				"resolutionX"
+			],
+			[
+				"res",
+				"resolutionY"
+			],
+			[
+				"light",
+				"lightbox_content"
+			],
+			[
+				"margi",
+				"margin-top"
+			],
+			[
+				"stage",
+				"stage_num"
+			],
+			[
+				"ov",
+				"overflow"
+			],
+			[
+				"block",
+				"inline-block"
+			],
+			[
+				"MAX",
+				"MAX_HEIGHT"
+			],
+			[
+				"fun",
+				"fun	Function"
+			],
+			[
+				"chata",
+				"charactersLength"
+			],
+			[
+				"on",
+				"open_login"
+			],
+			[
+				"address",
+				"address_1"
+			],
+			[
+				"ser",
+				"serializedData"
+			],
+			[
+				"pre",
+				"previous_top_position"
+			],
+			[
+				"c",
+				"console"
+			],
+			[
+				"backgr",
+				"background"
+			],
+			[
+				"color",
+				"color"
+			],
+			[
+				"border",
+				"border-box"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"op",
+				"opacity"
+			],
+			[
+				"user",
+				"user_password"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"options",
+				"option_links"
+			],
+			[
+				"prices_",
+				"prices_query_num"
+			],
+			[
+				"van",
+				"van_prices_sb"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"padingb",
+				"padding-bottom"
+			],
+			[
+				"sp",
+				"space_size"
+			],
+			[
+				"allA",
+				"allActiveVanBrands"
+			],
+			[
+				"multi",
+				"multiPokemon"
+			],
+			[
+				"displ",
+				"displayNames"
+			],
+			[
+				"sprite",
+				"spriteSize"
+			],
+			[
+				"nido",
+				"Nidorino"
+			],
+			[
+				"ven",
+				"Venusaur"
+			],
+			[
+				"Nid",
+				"Nidorina"
+			],
+			[
+				"option",
+				"optionslist"
+			],
+			[
+				"image",
+				"background-image"
+			],
+			[
+				"model",
+				"model_select"
+			],
+			[
+				"product",
+				"products"
+			],
+			[
+				"inline-b",
+				"inline-block"
+			],
+			[
+				"st",
+				"style	Tag"
+			],
+			[
+				"iline",
+				"inline-block"
+			],
+			[
+				"wr",
+				"StringWriter"
+			],
+			[
+				"field",
+				"fieldLength"
+			],
+			[
+				"cf",
+				"configfile"
+			],
+			[
+				"_pos",
+				"_posX"
+			],
+			[
+				"wh",
+				"whiteTurn"
+			],
+			[
+				"border-s",
+				"border-style"
+			],
+			[
+				"style",
+				"font-style"
+			],
+			[
+				"brand",
+				"brand_select"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Tafl.java",
+			"settings":
+			{
+				"buffer_size": 8428,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Board.java",
+			"settings":
+			{
+				"buffer_size": 1838,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "UserInteraction.java",
+			"settings":
+			{
+				"buffer_size": 10271,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "ArtificialPlayer.java",
+			"settings":
+			{
+				"buffer_size": 523,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Piece.java",
+			"settings":
+			{
+				"buffer_size": 1251,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "BoardMoves.java",
+			"settings":
+			{
+				"buffer_size": 313,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Chess.java",
+			"settings":
+			{
+				"buffer_size": 2584,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "DeathFromAbove.java",
+			"settings":
+			{
+				"buffer_size": 2888,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Move.java",
+			"settings":
+			{
+				"buffer_size": 865,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "TextBox.java",
+			"settings":
+			{
+				"buffer_size": 986,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Java/Ant.sublime-build",
+					""
+				],
+				[
+					"Packages/Java/JavaC.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Java/Ant.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 87.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"package insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"commit",
+				"Git: Commit"
+			],
+			[
+				"git p",
+				"Git: Pull"
+			],
+			[
+				"git pus",
+				"Github: Pull Requests"
+			],
+			[
+				"git init",
+				"Git: Init"
+			],
+			[
+				"pi",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 521.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+			"import urllib.request,os; pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/tgbmac/Documents/Projects/SquareTactics"
+	],
+	"file_history":
+	[
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/CC720B0A-44F1-4B7E-9467-B6BD1059D277/Controller.php",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/FF0D3329-4E22-4E94-8EEE-2814616E6BEA/HomeController.php",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/93A84F04-7D45-4A0B-907B-8A30C55CECB0/customise.html",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/FB996F86-2A65-431B-BB1A-57681BE12FF4/style.css",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/2A4FE071-57EA-4AFC-B008-3633632C98FC/customise.js",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/29BAF1C8-E150-48F7-899C-DD25FEC2A9A8/home.html",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Controllers/AppController.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Middleware/VerifyCsrfToken.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Controllers/Controller.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Package.php",
+		"/Users/tgbmac/Desktop/Pando App/Pando/www/js/script.js",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/7D66491F-DC8A-4C3D-B2E8-24003C842C35/.htaccess",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/47675CD1-987E-45B1-B255-614AA4FD6DA1/.htaccess",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/6AEF5842-1C37-4028-82D2-4DFC7BB09A85/config.ini",
+		"/Users/tgbmac/Documents/Projects/squaretactics/TextBox.java",
+		"/Users/tgbmac/Documents/Projects/squaretactics/Piece.java",
+		"/Users/tgbmac/Documents/Projects/squaretactics/Move.java",
+		"/Users/tgbmac/Documents/Projects/squaretactics/DeathFromAbove.java",
+		"/Users/tgbmac/Documents/Projects/squaretactics/Chess.java",
+		"/Users/tgbmac/Documents/Projects/squaretactics/BoardMoves.java",
+		"/Users/tgbmac/Documents/Projects/squaretactics/UserInteraction.java",
+		"/Users/tgbmac/Documents/Projects/SquareTactics/ArtificialPlayer.java",
+		"/Users/tgbmac/Documents/Projects/squaretactics/Tafl.java",
+		"/Users/tgbmac/Documents/Projects/squaretactics/Board.java",
+		"/Users/tgbmac/Documents/Projects/SquareTactics/UserInteraction.java",
+		"/Users/tgbmac/Documents/Projects/SquareTactics/Move.java",
+		"/Users/tgbmac/Documents/Projects/SquareTactics/TextBox.java",
+		"/Users/tgbmac/Documents/Projects/SquareTactics/BoardMoves.java",
+		"/Users/tgbmac/Documents/Projects/SquareTactics/Piece.java",
+		"/Users/tgbmac/Documents/Projects/SquareTactics/Board.java",
+		"/Users/tgbmac/Documents/Projects/SquareTactics/Tafl.java",
+		"/Users/tgbmac/Documents/Projects/Tafl/Piece.java",
+		"/Users/tgbmac/Documents/Projects/Tafl/UserInteraction.java",
+		"/Users/tgbmac/Documents/Projects/Tafl/TextBox.java",
+		"/Users/tgbmac/Documents/Projects/Tafl/Tafl.java",
+		"/Users/tgbmac/Documents/Projects/SquareTactics/README.md",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/A4B943C5-6305-45F4-B477-1DD6F873D471/home.html",
+		"/Users/tgbmac/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/2BA676D6-5F8B-4FFE-9CCF-0B79F394EDBC/config.ini",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/B0DEBE09-CF7C-4316-B8C8-3535AAEB62C7/config.ini",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/D64F66CE-A7A4-498B-BB8F-CADAD04DF311/index.html",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/4850A037-C6DF-47DA-9CB2-C6EEDF840569/home.html",
+		"/Users/tgbmac/Documents/Projects/SquareTactics/Chess.java",
+		"/Users/tgbmac/Documents/Projects/SquareTactics/DeathFromAbove.java",
+		"/Users/tgbmac/Documents/Projects/Tafl/Board.java",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/types.blade.php",
+		"/Users/tgbmac/Desktop/overflow/overflow/Pando App/Pando/www/css/index.css",
+		"/Users/tgbmac/Desktop/overflow/Pando App/Pando/www/js/script.js",
+		"/Users/tgbmac/Desktop/overflow/overflow/Pando App/Pando/www/index.html",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/public/css/style.css",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/bootstrap/app.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/status.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/User.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/portal.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Controllers/Auth/AuthController.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/deliverpost.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/home/nav.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/usersettings.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/useredit.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Core.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/PostPoints.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Round.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/PackageRoundLink.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Type.php",
+		"/Users/tgbmac/Downloads/accesslog_myappforyou.co.uk_5_20_2015 (1)",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Controllers/UserController.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/useradmin.blade.php",
+		"/Users/tgbmac/Downloads/sshAccessKey.pem",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Controllers/Auth/PasswordController.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/vendor/laravel/framework/src/Illuminate/Support/Facades/Auth.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/home/head.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Middleware/Authenticate.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Controllers/HomeController.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/auth/register.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/app.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/home.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Controllers/DashBoardController.php.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Requests/Auth/LoginRequest.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Requests/Auth/RegisterRequest.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/master.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/homepage.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/newpost.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/PostRounds.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Controllers/CoreController.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/register.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/vendor/laravel/framework/src/Illuminate/Config/composer.json",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/config/app.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/dashboard.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/login.blade.php",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/531B33CE-F085-44FC-9FEF-CBF9D28C9344/style.css",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/915796F7-BA9D-483C-A1E3-F584BFB03F94/index.php",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/C05CDC1E-19B7-4C48-B746-50BC4FAAEE5D/oldissues.html",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/1D90AF11-93FD-47C6-A202-EEB0F4B2BC74/issues.html",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/database/migrations/2015_04_26_170909_create_core_table.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/database/migrations/2015_05_05_164304_create_location_table.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/database/migrations/2015_05_05_165615_add_locations.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/database/migrations/2015_04_26_171625_add_cores.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/home/layout.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/home/footer.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/public/css/font.css",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/home/header.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Controllers/CoresControllerOld.php",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/3FA4725A-71E4-46C2-9419-40572E9A17B5/functions.php",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/249A0B49-B8E5-4549-90FC-A7E746E9E0DD/issues.html",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/A220571B-8A4E-482A-95DE-C65F32755B90/index.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Controllers/Core.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Controllers/CoresController.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Controllers/core.php",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/0A1231C4-4BDE-4A1A-9A70-E8506CD08498/header.php",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/AD55D4EE-8885-4D2C-9F3E-CD3E9ECD0145/style.css",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/8BE5442C-EA02-4160-B065-400E2D27C15D/script.js",
+		"/Users/tgbmac/Library/Caches/Cleanup At Startup/Transmit/85D7214E-9CC6-424F-9A86-57BB03743130/index.php",
+		"/Users/tgbmac/Desktop/cupid messages.txt",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Controllers/WelcomeController.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/welcome.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/config/database.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/Middleware/RedirectIfAuthenticated.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/config/auth.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/auth/login.blade.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/app/Http/routes.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/public/.htaccess",
+		"/Users/tgbmac/Desktop/Pando App/Pando/www/index.html",
+		"/Users/tgbmac/Desktop/Pando App/Pando/www/js/index.js",
+		"/Users/tgbmac/Desktop/cupid messages",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/resources/views/emails/password.blade.php",
+		"/Applications/XAMPP/xamppfiles/etc/httpd.conf",
+		"/Applications/XAMPP/xamppfiles/htdocs/laravel/pando/public/index.php",
+		"/Users/tgbmac/Desktop/appcode2.txt"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 102.0,
+		"where_history":
+		[
+			"<open files>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"ai",
+			"charge",
+			"access",
+			"ajax",
+			"app",
+			"upload_app",
+			"a ",
+			"banner",
+			"image",
+			"text-align:left",
+			"create_app",
+			"left_half",
+			"button",
+			"create_app",
+			"invalid",
+			"checkCheckMate",
+			"update",
+			"checkCheckMate",
+			"p",
+			"calculatePieceMoves",
+			"board.get(tempX,tempY)",
+			"calculatePieceMoves",
+			"PossibleMoves",
+			"possibleMoves",
+			"</video>",
+			"<video  src=\"{{@BASE}}/img/mov/game1.mp4\" class=\"sample_video\" autoplay=\"autoplay\" loop=\"loop\" muted=\"muted\">",
+			"reset",
+			"history",
+			"setNew",
+			"set",
+			"history",
+			"set",
+			"sizeY",
+			"checkMate",
+			"checkCheckMate",
+			"checkMate",
+			"resize",
+			"riseze",
+			"piece",
+			"setMouse",
+			"set(",
+			"calculatePieceMoves",
+			"X",
+			"selX",
+			"game",
+			"gameOver",
+			"offBoard",
+			"blackWin",
+			"isBlack",
+			"checkWin",
+			"checkKing",
+			"blackWin",
+			"selected",
+			"tafl",
+			"clear",
+			"reset",
+			"selected",
+			"simulatePieceMoves",
+			"calculatePieceMoves",
+			"checkCheckMate",
+			"checkmate",
+			"pinning",
+			"pidding",
+			"calculatePieceMoves",
+			"pinning",
+			"pidding",
+			"history",
+			"pinningKing",
+			"checkCheck",
+			"checkcheck",
+			"checkCheck",
+			"calculatePieceMoves",
+			"checkCheck",
+			"pinning",
+			"checkCheck",
+			"pinningKing",
+			"checkCheck",
+			"pinning",
+			"checkCheck",
+			"pinningKing",
+			"undo",
+			"history",
+			"saveHistory",
+			"savehistory",
+			"save",
+			"possibleMoves",
+			"calculatePieceMoves",
+			"possibleMoves",
+			"calculatePieceMoves",
+			"undo",
+			"pinningKing",
+			"calculatePieceMoves",
+			"selX",
+			"canTakeKing",
+			"tafl.checkPiece",
+			"canTakeKing",
+			"checkcheck",
+			"check",
+			"try",
+			"checkCheck",
+			"calculatePieceMoves",
+			"selectedPiece",
+			"debug",
+			"key",
+			"setKey",
+			"possibleMoves",
+			"validMove",
+			"key",
+			"setKey",
+			"debug",
+			"moveType",
+			"tafl",
+			"original",
+			"update",
+			"undo",
+			"history",
+			"History",
+			"history",
+			"set(",
+			"set",
+			"movePiece",
+			"Integer",
+			"capture",
+			"restricted",
+			"true",
+			"move",
+			"Jump",
+			"checkMove"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"destination"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Tafl.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8428,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8394,
+								8396
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Java/Java.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Board.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1838,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Java/Java.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "UserInteraction.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10271,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								322,
+								322
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Java/Java.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 175.0,
+						"translation.y": 2.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": "ArtificialPlayer.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 523,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Piece.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1251,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "BoardMoves.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 313,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "Chess.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2584,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "DeathFromAbove.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2888,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "Move.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 865,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "TextBox.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 986,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Java/Java.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.454856185624,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 123.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 118.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 32.0
+	},
+	"pinned_build_system": "Packages/Java/JavaC.sublime-build",
+	"project": "squaretactics.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"http",
+				"~/Library/Caches/Cleanup At Startup/Transmit/4E0E9A5D-176B-4FCC-B6E6-1EC142D5F801/Product.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 222.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

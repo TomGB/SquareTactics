@@ -12,7 +12,7 @@ public class UserInteraction extends JFrame{
 
 	boolean icons = false;
 
-	int sizeX=1200, sizeY=800;
+	int sizeX=800, sizeY=800;
 	int boardWidth = sizeX<sizeY?sizeX:sizeY;
 	Tafl tafl;
 	boolean mouseIsDown,up,down,left,right,space,showPow;
@@ -29,13 +29,7 @@ public class UserInteraction extends JFrame{
 
 	TextBox reset,load,save,rules,undo,blackWinText,whiteWinText,whiteTurnText,blackTurnText;
 
-	String 	rulesText = "Black is attacking and goes first, white is defending it's King (the pink piece in\nthe middle).\n\n"
-			+ "To win black must surround the King on 4 sides or white must reach one of the\nfour corners with its King.\n\n"
-			+ "Pieces may move any distance in a strait line,horisontally or vertically,\nunless another piece blocks its path.\n\n"
-			+ "Only the King may sit in the red spaces.\n\n"
-			+ "To take an enemy piece, on your turn suround it on opposite sides with\ntwo pieces.\n\n"
-			+ "The red spaces count as enemy pieces when it is not your turn and can be\n"
-			+ "used in capturing either side, unless the King is on it in which case it counts as\nwhite only.";
+	String 	rulesText = "Square Tactics is similar to chess in that you must put\nthe opponents King in check mate.\nThis is where the similarities end!";
 
 	Clip nomSound;
 	AudioInputStream nomSoundStream;

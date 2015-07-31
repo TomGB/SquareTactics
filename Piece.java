@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 class Piece {
 
-	static int WRAPPING = 1, DOUBLEMOVE = 2;
+	static int WRAPPING = 1, DOUBLEMOVE = 2, PROMOTION = 3;
 
 	int locX, locY;
 

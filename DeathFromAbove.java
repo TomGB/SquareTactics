@@ -8,6 +8,8 @@ class DeathFromAbove {
 
 	public DeathFromAbove(){
 
+		pieces = new Piece[8][8];
+
 		List<Move> pawnMoves = Arrays.asList(
 			new Move(0,1,"Step", new int[]{Move.ONLYMOVE,Move.DOUBLEFIRST}),new Move(1,1,"Step", new int[]{Move.ONLYCAPTURE}),new Move(-1,1,"Step", new int[]{Move.ONLYCAPTURE})
 		);
