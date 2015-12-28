@@ -5,28 +5,70 @@ import java.awt.*;
 
 class TextBox {
 
+	static ArrayList<TextBox> ALL_TEXT_BOXES = new ArrayList<TextBox>();
+
+	SquareTactics squaretactics;
+
 	int posX, posY, width, height;
+	boolean active = true;
 	String text;
 	Image image;
 	final Color light = new Color(255,255,255,200);
 	final Color dark = new Color(0,0,0,40);
 
-	public TextBox(int _posX, int _posY, int _width, int _height, String _text){
+	public TextBox(SquareTactics _squaretactics, int _posX, int _posY, int _width, int _height, String _text){
+		squaretactics = _squaretactics;
 		posX = _posX;
 		posY = _posY;
 		width = _width;
 		height = _height;
 		text = _text;
+
+		ALL_TEXT_BOXES.add(this);
 	}
-	public TextBox(int _posX, int _posY, int _width, int _height, Image _image){
+	public TextBox(SquareTactics _squaretactics, int _posX, int _posY, int _width, int _height, Image _image){
+		squaretactics = _squaretactics;
 		posX = _posX;
 		posY = _posY;
 		width = _width;
 		height = _height;
 		image = _image;
+
+		ALL_TEXT_BOXES.add(this);
 	}
-	public void draw(Boolean state, Graphics g){
-		g.setColor(state?light:dark);
+
+	public static boolean CHECK_HOVER(int mX, int mY){
+		for(TextBox text_box : ALL_TEXT_BOXES){
+  			if(text_box.inside(mX, mY)){
+  				text_box.on_hover();
+  			}
+		}
+		return false;
+	}
+
+	public static void CHECK_CLICK(int mX, int mY){
+		for(TextBox text_box : ALL_TEXT_BOXES){
+  			if(text_box.inside(mX, mY)){
+  				text_box.on_click();
+  			}
+		}
+	}
+
+	public void do_action(){
+
+	}
+
+	public boolean on_hover(){
+		return active;
+	}
+
+	public void on_click(){
+		if(active){
+			do_action();
+		}
+	}
+	public void draw(Graphics g){
+		g.setColor(active?light:dark);
 		g.fillRect(posX,posY,width,height);
 		g.setColor(Color.black);
 		g.drawRect(posX,posY,width,height);
@@ -35,6 +77,12 @@ class TextBox {
 		}else{
 			g.drawImage(image,74,12, null);
 		}
+	}
+	public void set_active() {
+		active = true;
+	}
+	public void set_inactive() {
+		active = false;
 	}
 	public boolean inside(int x, int y){
 		return (x>posX&&x<posX+width&&y>posY&&y<posY+height);

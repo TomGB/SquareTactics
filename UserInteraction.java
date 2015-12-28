@@ -27,7 +27,7 @@ public class UserInteraction extends JFrame{
 	int frameY = 70;
 	Font f = new Font("Dialog", Font.PLAIN, 16);
 
-	TextBox reset,load,save,rules,undo,blackWinText,whiteWinText,whiteTurnText,blackTurnText;
+	TextBox reset,load,save,rules,undo,startgame, blackWinText,whiteWinText,whiteTurnText,blackTurnText;
 
 	String 	rulesText = "Square Tactics is similar to chess in that you must put\nthe opponents King in check mate.\nThis is where the similarities end!";
 
@@ -78,15 +78,53 @@ public class UserInteraction extends JFrame{
 			chessPieces[i] = allChessPieces.getSubimage((i>=6?10:0)+202*(i%6),8+320*(i<6?0:1),202,320);
 		}
 
-		reset = new TextBox(370,10,80,40,"Reset");
-		load = new TextBox(460,10,80,40,"Load");
-		save = new TextBox(550,10,80,40,"Save");
-		rules = new TextBox(640,10,80,40,"Rules");
-		undo = new TextBox(70,10,50,40,undoimg);
-		blackWinText = new TextBox((sizeX-textWidth)/2,(boardWidth-textHeight)/2,textWidth,textHeight,"Black has Won");
-		whiteWinText = new TextBox((sizeX-textWidth)/2,(boardWidth-textHeight)/2,textWidth,textHeight,"White has Won");
-		whiteTurnText = new TextBox(130,10,textWidth,textHeight,"White's Turn");
-		blackTurnText = new TextBox(130,10,textWidth,textHeight,"Black's Turn");
+		reset = new TextBox(squaretactics, 370,10,80,40,"Reset"){
+			public void do_action(){
+				p("reset game");
+				squaretactics.reset();
+			}
+		};
+		load = new TextBox(squaretactics, 460,10,80,40,"Load"){
+			public void do_action(){
+				p("load game");
+				squaretactics.load();
+			}
+		};
+		save = new TextBox(squaretactics, 550,10,80,40,"Save"){
+			public void do_action(){
+				p("save game");
+				squaretactics.save();
+			}
+		};
+		rules = new TextBox(squaretactics, 640,10,80,40,"Rules"){
+			public void do_action(){
+				p("display rules");
+				squaretactics.rules();
+			}
+		};
+		undo = new TextBox(squaretactics, 70,10,50,40,undoimg){
+			public void do_action(){
+				p("undo clicked");
+				squaretactics.undo();
+			}
+		};
+		startgame = new TextBox(squaretactics, 70,10,50,40,"Start Game"){
+			public void do_action(){
+				p("start game");
+				squaretactics.myGUI.repaint();
+				squaretactics.current_stage = "in game";
+			}
+		};
+
+		blackWinText = new TextBox(squaretactics, (sizeX-textWidth)/2,(boardWidth-textHeight)/2,textWidth,textHeight,"Black has Won");
+		whiteWinText = new TextBox(squaretactics, (sizeX-textWidth)/2,(boardWidth-textHeight)/2,textWidth,textHeight,"White has Won");
+		whiteTurnText = new TextBox(squaretactics, 130,10,textWidth,textHeight,"White's Turn");
+		blackTurnText = new TextBox(squaretactics, 130,10,textWidth,textHeight,"Black's Turn");
+
+		blackWinText.set_inactive();
+		whiteWinText.set_inactive();
+		whiteTurnText.set_inactive();
+		blackTurnText.set_inactive();
 
 		// setResizable( false );
 
@@ -99,92 +137,107 @@ public class UserInteraction extends JFrame{
 				g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); //anti alias to make lines smooth
 				AffineTransform at = g2.getTransform();
 
-				g.drawImage(background,50,50,boardWidth-100-3,boardWidth-100-3,null);
+				if(squaretactics.current_stage == "main menu"){
+					startgame.draw(g);
 
-				for (int i=0; i<squaretactics.board.width; i++) {
-					for (int j=0; j<squaretactics.board.height; j++) {
+				}else if(squaretactics.current_stage == "in game"){
 
-						g.setColor(new Color(255,255,255,200));
-						if(((i+j*8)+(j%2))%2==0){
-							g.setColor(new Color(100,100,100,200));
-						}
-						g.fillRect(50+gridSpace*i,50+gridSpace*j,gridSpace,gridSpace);
-						g.setColor(Color.black);
-						g.drawRect(50+gridSpace*i,50+gridSpace*j,gridSpace,gridSpace);
+					g.drawImage(background,50,50,boardWidth-100-3,boardWidth-100-3,null);
 
-						Piece tempPiece = squaretactics.board.get(i,j);
-						if(tempPiece!=null){
-							if(icons){
-								drawPiece(tempPiece,i,j,g);
-							}else{
-								drawPieceImage(tempPiece,i,j,g);
+					for (int i=0; i<squaretactics.board.width; i++) {
+						for (int j=0; j<squaretactics.board.height; j++) {
+
+							g.setColor(new Color(255,255,255,200));
+							if(((i+j*8)+(j%2))%2==0){
+								g.setColor(new Color(100,100,100,200));
+							}
+							g.fillRect(50+gridSpace*i,50+gridSpace*j,gridSpace,gridSpace);
+							g.setColor(Color.black);
+							g.drawRect(50+gridSpace*i,50+gridSpace*j,gridSpace,gridSpace);
+
+							Piece tempPiece = squaretactics.board.get(i,j);
+							if(tempPiece!=null){
+								if(icons){
+									drawPiece(tempPiece,i,j,g);
+								}else{
+									drawPieceImage(tempPiece,i,j,g);
+								}
 							}
 						}
 					}
-				}
 
-				if(squaretactics.pinningKing.size()>0){
-					g.setColor(new Color(255,0,0,150));
-					for (BoardMoves location: squaretactics.pinningKing) {
-						// p("pinning: "+location.x+" "+location.y);
-						g.fillRect(50+gridSpace*location.x,50+gridSpace*location.y,gridSpace,gridSpace);
-					}
-				}
-
-				if(squaretactics.selectedPiece!=null){
-					for (int i=0; i<squaretactics.possibleMoves.size(); i++) {
-						BoardMoves move = squaretactics.possibleMoves.get(i);
-						if(move.moveType=="Jump"){
-							g.setColor(new Color(200,200,0,50));
-						}else if(move.moveType=="Step"){
-							g.setColor(new Color(0,0,200,50));
-						}else if(move.moveType=="Slide"){
-							g.setColor(new Color(200,0,0,50));
+					if(squaretactics.pinningKing.size()>0){
+						g.setColor(new Color(255,0,0,150));
+						for (BoardMoves location: squaretactics.pinningKing) {
+							// p("pinning: "+location.x+" "+location.y);
+							g.fillRect(50+gridSpace*location.x,50+gridSpace*location.y,gridSpace,gridSpace);
 						}
-						g.fillRect(50+gridSpace*move.x,50+gridSpace*move.y,gridSpace,gridSpace);
 					}
-				}
-
-				if(squaretactics.checkMate&&squaretactics.whiteTurn){
-					blackWinText.draw(true,g);
-				}else if(squaretactics.checkMate&&!squaretactics.whiteTurn){
-					whiteWinText.draw(true, g);
-				}else if(squaretactics.rules){
-					g.setColor(new Color(255,255,255,210));
-					g.fillRect(60,60,sizeX-120,sizeY-120);
-					g.setColor(Color.black);
-					g.drawRect(60,60,sizeX-120,sizeY-120);
-					for (String line : rulesText.split("\n")){
-	        			g.drawString(line, frameX, frameY += g.getFontMetrics().getHeight());
-					}
-					frameY = 70;
-
-					if(squaretactics.whiteTurn){
-						whiteTurnText.draw(false,g);
-					}else{
-						blackTurnText.draw(false,g);
-					}
-					undo.draw(false,g);
-					save.draw(false,g);
-					load.draw(false,g);
-					reset.draw(false,g);
-					rules.draw(true,g);
-
-				}else{
-					if(squaretactics.whiteTurn){
-						whiteTurnText.draw(true,g);
-					}else{
-						blackTurnText.draw(true,g);
-					}
-					undo.draw(true,g);
-					save.draw(true,g);
-					load.draw(true,g);
-					reset.draw(true,g);
-					rules.draw(true,g);
 
 					if(squaretactics.selectedPiece!=null){
-						g.setColor(Color.blue);
-						g.drawRect(50+gridSpace*squaretactics.selX+selectSpacing,50+gridSpace*squaretactics.selY+selectSpacing,gridSpace-selectSpacing*2,gridSpace-selectSpacing*2);
+						for (int i=0; i<squaretactics.possibleMoves.size(); i++) {
+							BoardMoves move = squaretactics.possibleMoves.get(i);
+							if(move.moveType=="Jump"){
+								g.setColor(new Color(200,200,0,50));
+							}else if(move.moveType=="Step"){
+								g.setColor(new Color(0,0,200,50));
+							}else if(move.moveType=="Slide"){
+								g.setColor(new Color(200,0,0,50));
+							}
+							g.fillRect(50+gridSpace*move.x,50+gridSpace*move.y,gridSpace,gridSpace);
+						}
+					}
+
+					if(squaretactics.checkMate&&squaretactics.whiteTurn){
+						blackWinText.draw(g);
+					}else if(squaretactics.checkMate&&!squaretactics.whiteTurn){
+						whiteWinText.draw(g);
+					}else{
+						if(squaretactics.rules){
+
+							undo.set_inactive();
+							save.set_inactive();
+							load.set_inactive();
+							reset.set_inactive();
+							whiteTurnText.set_inactive();
+							blackTurnText.set_inactive();
+
+							g.setColor(new Color(255,255,255,210));
+							g.fillRect(60,60,sizeX-120,sizeY-120);
+							g.setColor(Color.black);
+							g.drawRect(60,60,sizeX-120,sizeY-120);
+							for (String line : rulesText.split("\n")){
+			        			g.drawString(line, frameX, frameY += g.getFontMetrics().getHeight());
+							}
+							frameY = 70;
+
+						}else{
+
+							undo.set_active();
+							save.set_active();
+							load.set_active();
+							reset.set_active();
+
+							if(squaretactics.selectedPiece!=null){
+								g.setColor(Color.blue);
+								g.drawRect(50+gridSpace*squaretactics.selX+selectSpacing,50+gridSpace*squaretactics.selY+selectSpacing,gridSpace-selectSpacing*2,gridSpace-selectSpacing*2);
+							}
+						}
+
+						undo.draw(g);
+						save.draw(g);
+						load.draw(g);
+						reset.draw(g);
+						rules.draw(g);
+						whiteTurnText.set_active();
+						blackTurnText.set_active();
+
+						if(squaretactics.whiteTurn){
+							whiteTurnText.draw(g);
+						}else{
+							blackTurnText.draw(g);
+						}
+
 					}
 				}
 			}
@@ -254,21 +307,32 @@ public class UserInteraction extends JFrame{
 	public void setMouse(int _mX, int _mY){
 		mX=_mX;
 		mY=_mY;
-		if((!squaretactics.checkMate&&undo.inside(mX,mY))||save.inside(mX,mY)||load.inside(mX,mY)||reset.inside(mX,mY)||rules.inside(mX,mY)){
-			setCursor(new Cursor(Cursor.HAND_CURSOR));
-		}else{
-			setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		}
 
-		float tempX=((float)(mX-50)/gridSpace);
-		float tempY=((float)(mY-50)/gridSpace);
-		if(tempX<squaretactics.board.width && tempX>=0 && tempY<squaretactics.board.height && tempY>=0){
-			Piece temp = squaretactics.board.get((int)tempX,(int)tempY);
-			if(temp!=null){
-				if(squaretactics.hoverPiece!=temp){
-					squaretactics.hoverPiece = temp;
-					// p("Location: "+temp.locX+" "+temp.locY);
+		if(squaretactics.current_stage == "in game"){
+			if((!squaretactics.checkMate)){
+				if(TextBox.CHECK_HOVER(mX, mY)){
+					setCursor(new Cursor(Cursor.HAND_CURSOR));
+				}else{
+					setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 				}
+			}
+
+			float tempX=((float)(mX-50)/gridSpace);
+			float tempY=((float)(mY-50)/gridSpace);
+			if(tempX<squaretactics.board.width && tempX>=0 && tempY<squaretactics.board.height && tempY>=0){
+				Piece temp = squaretactics.board.get((int)tempX,(int)tempY);
+				if(temp!=null){
+					if(squaretactics.hoverPiece!=temp){
+						squaretactics.hoverPiece = temp;
+						// p("Location: "+temp.locX+" "+temp.locY);
+					}
+				}
+			}
+		}else if(squaretactics.current_stage == "main menu"){
+			if(TextBox.CHECK_HOVER(mX, mY)){
+				setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}else{
+				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		}
 	}
@@ -276,27 +340,23 @@ public class UserInteraction extends JFrame{
 		if(state){
 			mouseIsDown=true;
 		}else{
-			mouseIsDown=false;
-			float tempX=((float)(mX-50)/gridSpace);
-			float tempY=((float)(mY-50)/gridSpace);
-			if(tempX<squaretactics.board.width && tempX>=0 && tempY<squaretactics.board.height && tempY>=0){
-				// p("update call");
-				squaretactics.update((int)tempX,(int)tempY);
-			}else if(!squaretactics.checkMate && undo.inside(mX,mY)){
-				p("undo clicked");
-				squaretactics.undo();
-			}else if(rules.inside(mX,mY)){
-				p("display rules");
-				squaretactics.rules();
-			}else if(!squaretactics.rules&&save.inside(mX,mY)){
-				p("save game");
-				squaretactics.save();
-			}else if(!squaretactics.rules&&load.inside(mX,mY)){
-				p("load game");
-				squaretactics.load();
-			}else if(!squaretactics.rules&&reset.inside(mX,mY)){
-				p("reset game");
-				squaretactics.reset();
+
+			if(squaretactics.current_stage == "in game"){
+				mouseIsDown=false;
+				float tempX=((float)(mX-50)/gridSpace);
+				float tempY=((float)(mY-50)/gridSpace);
+				if(tempX<squaretactics.board.width && tempX>=0 && tempY<squaretactics.board.height && tempY>=0){
+					// p("update call");
+					squaretactics.update((int)tempX,(int)tempY);
+				}else if(!squaretactics.checkMate){
+					TextBox.CHECK_CLICK(mX, mY);
+				}else{
+					TextBox.CHECK_CLICK(mX, mY);
+				}
+			}else if(squaretactics.current_stage == "main menu"){
+				if(startgame.inside(mX,mY)){
+					TextBox.CHECK_CLICK(mX, mY);
+				}
 			}
 		}
 	}

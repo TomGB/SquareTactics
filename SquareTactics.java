@@ -13,6 +13,7 @@ class SquareTactics {
 
 	boolean whiteTurn=true, rules=false, checkMate = false;
 	boolean debug=false, moveDebug = false;
+	String current_stage = "main menu";
 	// ArtificialPlayer ai;
 
 	ArrayList<BoardMoves> pinningKing = new ArrayList<BoardMoves>();
@@ -205,9 +206,17 @@ class SquareTactics {
 					}
 				}
 
-				if((move.moveType=="Jump"||move.moveType=="Step")&&
-					((i==2&&!(((move.doubleFirst&&!currentPiece.hasMoved)||(currentPiece.doubleMove))&&possibleSeccond))||i>2)) {
-					endLoop = true;
+				if(move.moveType == "Jump" || move.moveType == "Step"){
+					if(i>2){
+						endLoop = true;
+					}else if(i==2) {
+						if (!possibleSeccond) {
+							boolean not_moved_double_first_move_piece = (move.doubleFirst&&!currentPiece.hasMoved);
+							if (!(not_moved_double_first_move_piece||currentPiece.doubleMove)) {
+								endLoop = true;
+							}
+						}
+					}
 				}
 
 				if(tempX>7||tempX<0||tempY>7||tempY<0){
