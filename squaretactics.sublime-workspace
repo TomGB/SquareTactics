@@ -451,7 +451,7 @@
 			"file": "Tafl.java",
 			"settings":
 			{
-				"buffer_size": 8428,
+				"buffer_size": 8431,
 				"line_ending": "Windows"
 			}
 		},
@@ -459,7 +459,7 @@
 			"file": "Board.java",
 			"settings":
 			{
-				"buffer_size": 1838,
+				"buffer_size": 1841,
 				"line_ending": "Unix"
 			}
 		},
@@ -467,7 +467,7 @@
 			"file": "UserInteraction.java",
 			"settings":
 			{
-				"buffer_size": 10271,
+				"buffer_size": 9724,
 				"line_ending": "Windows"
 			}
 		},
@@ -483,7 +483,7 @@
 			"file": "Piece.java",
 			"settings":
 			{
-				"buffer_size": 1251,
+				"buffer_size": 1266,
 				"line_ending": "Unix"
 			}
 		},
@@ -499,7 +499,7 @@
 			"file": "Chess.java",
 			"settings":
 			{
-				"buffer_size": 2584,
+				"buffer_size": 2618,
 				"line_ending": "Unix"
 			}
 		},
@@ -507,7 +507,7 @@
 			"file": "DeathFromAbove.java",
 			"settings":
 			{
-				"buffer_size": 2888,
+				"buffer_size": 2917,
 				"line_ending": "Unix"
 			}
 		},
@@ -610,7 +610,7 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/tgbmac/Documents/Projects/SquareTactics"
+		"/Users/tgbmac/Documents/my_projects/SquareTactics"
 	],
 	"file_history":
 	[
@@ -915,15 +915,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8428,
+						"buffer_size": 8431,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8394,
-								8396
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1003,7 +1003,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1838,
+						"buffer_size": 1841,
 						"regions":
 						{
 						},
@@ -1091,15 +1091,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10271,
+						"buffer_size": 9724,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								322,
-								322
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1214,7 +1214,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1251,
+						"buffer_size": 1266,
 						"regions":
 						{
 						},
@@ -1272,7 +1272,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2584,
+						"buffer_size": 2618,
 						"regions":
 						{
 						},
@@ -1301,7 +1301,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2888,
+						"buffer_size": 2917,
 						"regions":
 						{
 						},

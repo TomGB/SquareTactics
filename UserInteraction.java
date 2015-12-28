@@ -14,7 +14,7 @@ public class UserInteraction extends JFrame{
 
 	int sizeX=800, sizeY=800;
 	int boardWidth = sizeX<sizeY?sizeX:sizeY;
-	Tafl tafl;
+	SquareTactics squaretactics;
 	boolean mouseIsDown,up,down,left,right,space,showPow;
 	int mX=0,mY=0;
 	int gridSpace=(boardWidth-100)/8;
@@ -37,11 +37,11 @@ public class UserInteraction extends JFrame{
 	BufferedImage allChessPieces;
 	Image[] chessPieces = new Image[12];
 
-	public UserInteraction(Tafl _tafl){
+	public UserInteraction(SquareTactics _squaretactics){
 
-		setTitle("Tafl");
+		setTitle("Square Tactics");
 
-		tafl = _tafl;
+		squaretactics = _squaretactics;
 
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 
@@ -101,8 +101,8 @@ public class UserInteraction extends JFrame{
 
 				g.drawImage(background,50,50,boardWidth-100-3,boardWidth-100-3,null);
 
-				for (int i=0; i<tafl.board.width; i++) {
-					for (int j=0; j<tafl.board.height; j++) {
+				for (int i=0; i<squaretactics.board.width; i++) {
+					for (int j=0; j<squaretactics.board.height; j++) {
 
 						g.setColor(new Color(255,255,255,200));
 						if(((i+j*8)+(j%2))%2==0){
@@ -112,7 +112,7 @@ public class UserInteraction extends JFrame{
 						g.setColor(Color.black);
 						g.drawRect(50+gridSpace*i,50+gridSpace*j,gridSpace,gridSpace);
 
-						Piece tempPiece = tafl.board.get(i,j);
+						Piece tempPiece = squaretactics.board.get(i,j);
 						if(tempPiece!=null){
 							if(icons){
 								drawPiece(tempPiece,i,j,g);
@@ -123,17 +123,17 @@ public class UserInteraction extends JFrame{
 					}
 				}
 
-				if(tafl.pinningKing.size()>0){
+				if(squaretactics.pinningKing.size()>0){
 					g.setColor(new Color(255,0,0,150));
-					for (BoardMoves location: tafl.pinningKing) {
+					for (BoardMoves location: squaretactics.pinningKing) {
 						// p("pinning: "+location.x+" "+location.y);
 						g.fillRect(50+gridSpace*location.x,50+gridSpace*location.y,gridSpace,gridSpace);
 					}
 				}
 
-				if(tafl.selectedPiece!=null){
-					for (int i=0; i<tafl.possibleMoves.size(); i++) {
-						BoardMoves move = tafl.possibleMoves.get(i);
+				if(squaretactics.selectedPiece!=null){
+					for (int i=0; i<squaretactics.possibleMoves.size(); i++) {
+						BoardMoves move = squaretactics.possibleMoves.get(i);
 						if(move.moveType=="Jump"){
 							g.setColor(new Color(200,200,0,50));
 						}else if(move.moveType=="Step"){
@@ -145,11 +145,11 @@ public class UserInteraction extends JFrame{
 					}
 				}
 
-				if(tafl.checkMate&&tafl.whiteTurn){
+				if(squaretactics.checkMate&&squaretactics.whiteTurn){
 					blackWinText.draw(true,g);
-				}else if(tafl.checkMate&&!tafl.whiteTurn){
+				}else if(squaretactics.checkMate&&!squaretactics.whiteTurn){
 					whiteWinText.draw(true, g);
-				}else if(tafl.rules){
+				}else if(squaretactics.rules){
 					g.setColor(new Color(255,255,255,210));
 					g.fillRect(60,60,sizeX-120,sizeY-120);
 					g.setColor(Color.black);
@@ -159,7 +159,7 @@ public class UserInteraction extends JFrame{
 					}
 					frameY = 70;
 
-					if(tafl.whiteTurn){
+					if(squaretactics.whiteTurn){
 						whiteTurnText.draw(false,g);
 					}else{
 						blackTurnText.draw(false,g);
@@ -171,7 +171,7 @@ public class UserInteraction extends JFrame{
 					rules.draw(true,g);
 
 				}else{
-					if(tafl.whiteTurn){
+					if(squaretactics.whiteTurn){
 						whiteTurnText.draw(true,g);
 					}else{
 						blackTurnText.draw(true,g);
@@ -182,9 +182,9 @@ public class UserInteraction extends JFrame{
 					reset.draw(true,g);
 					rules.draw(true,g);
 
-					if(tafl.selectedPiece!=null){
+					if(squaretactics.selectedPiece!=null){
 						g.setColor(Color.blue);
-						g.drawRect(50+gridSpace*tafl.selX+selectSpacing,50+gridSpace*tafl.selY+selectSpacing,gridSpace-selectSpacing*2,gridSpace-selectSpacing*2);
+						g.drawRect(50+gridSpace*squaretactics.selX+selectSpacing,50+gridSpace*squaretactics.selY+selectSpacing,gridSpace-selectSpacing*2,gridSpace-selectSpacing*2);
 					}
 				}
 			}
@@ -247,14 +247,14 @@ public class UserInteraction extends JFrame{
 		// else if(key==68){	right=state;}
 		// else if(key==32){	space=state;}
 		if(key==68){
-			tafl.debug=state;
-			p("Debug set: "+tafl.debug);
+			squaretactics.debug=state;
+			p("Debug set: "+squaretactics.debug);
 		} // d key
 	}
 	public void setMouse(int _mX, int _mY){
 		mX=_mX;
 		mY=_mY;
-		if((!tafl.checkMate&&undo.inside(mX,mY))||save.inside(mX,mY)||load.inside(mX,mY)||reset.inside(mX,mY)||rules.inside(mX,mY)){
+		if((!squaretactics.checkMate&&undo.inside(mX,mY))||save.inside(mX,mY)||load.inside(mX,mY)||reset.inside(mX,mY)||rules.inside(mX,mY)){
 			setCursor(new Cursor(Cursor.HAND_CURSOR));
 		}else{
 			setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -262,11 +262,11 @@ public class UserInteraction extends JFrame{
 
 		float tempX=((float)(mX-50)/gridSpace);
 		float tempY=((float)(mY-50)/gridSpace);
-		if(tempX<tafl.board.width && tempX>=0 && tempY<tafl.board.height && tempY>=0){
-			Piece temp = tafl.board.get((int)tempX,(int)tempY);
+		if(tempX<squaretactics.board.width && tempX>=0 && tempY<squaretactics.board.height && tempY>=0){
+			Piece temp = squaretactics.board.get((int)tempX,(int)tempY);
 			if(temp!=null){
-				if(tafl.hoverPiece!=temp){
-					tafl.hoverPiece = temp;
+				if(squaretactics.hoverPiece!=temp){
+					squaretactics.hoverPiece = temp;
 					// p("Location: "+temp.locX+" "+temp.locY);
 				}
 			}
@@ -279,24 +279,24 @@ public class UserInteraction extends JFrame{
 			mouseIsDown=false;
 			float tempX=((float)(mX-50)/gridSpace);
 			float tempY=((float)(mY-50)/gridSpace);
-			if(tempX<tafl.board.width && tempX>=0 && tempY<tafl.board.height && tempY>=0){
+			if(tempX<squaretactics.board.width && tempX>=0 && tempY<squaretactics.board.height && tempY>=0){
 				// p("update call");
-				tafl.update((int)tempX,(int)tempY);
-			}else if(!tafl.checkMate && undo.inside(mX,mY)){
+				squaretactics.update((int)tempX,(int)tempY);
+			}else if(!squaretactics.checkMate && undo.inside(mX,mY)){
 				p("undo clicked");
-				tafl.undo();
+				squaretactics.undo();
 			}else if(rules.inside(mX,mY)){
 				p("display rules");
-				tafl.rules();
-			}else if(!tafl.rules&&save.inside(mX,mY)){
+				squaretactics.rules();
+			}else if(!squaretactics.rules&&save.inside(mX,mY)){
 				p("save game");
-				tafl.save();
-			}else if(!tafl.rules&&load.inside(mX,mY)){
+				squaretactics.save();
+			}else if(!squaretactics.rules&&load.inside(mX,mY)){
 				p("load game");
-				tafl.load();
-			}else if(!tafl.rules&&reset.inside(mX,mY)){
+				squaretactics.load();
+			}else if(!squaretactics.rules&&reset.inside(mX,mY)){
 				p("reset game");
-				tafl.reset();
+				squaretactics.reset();
 			}
 		}
 	}

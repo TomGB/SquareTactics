@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 class ArtificialPlayer {
-	Tafl game;
+	SquareTactics game;
 
-	public ArtificialPlayer(Tafl _game){
+	public ArtificialPlayer(SquareTactics _game){
 		game = _game;
 	}
 

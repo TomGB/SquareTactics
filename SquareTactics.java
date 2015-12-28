@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-class Tafl {
+class SquareTactics {
 
 	UserInteraction myGUI;
 
@@ -23,7 +23,7 @@ class Tafl {
 	Piece hoverPiece = null;
 	int selX, selY;
 
-	public Tafl(){
+	public SquareTactics(){
 		// ai = new ArtificialPlayer(this);
 		board.clear();
 		board.setUp();
@@ -273,8 +273,8 @@ class Tafl {
 
 	public void save(){
 		try{
-			PrintWriter savefile= new PrintWriter(new File("taflsave.txt"));
-			savefile.println("tafl save");
+			PrintWriter savefile= new PrintWriter(new File("Square_Tactics_save.txt"));
+			savefile.println("Square Tactics save");
 			savefile.println(whiteTurn?"White's Turn":"Black's Turn");
 			for (int j=0; j<boardHeight; j++) {
 				for (int i=0; i<boardWidth; i++) {
@@ -289,7 +289,7 @@ class Tafl {
 	}
 
 	public void load(){
-		// try(BufferedReader br = new BufferedReader(new FileReader("taflsave.txt"))) {
+		// try(BufferedReader br = new BufferedReader(new FileReader("Square_Tactics_save.txt"))) {
 		// 	br.readLine();
 		// 	String turn = br.readLine();
 	 //        String line = br.readLine();
@@ -305,5 +305,5 @@ class Tafl {
 	}
 	public static void p(Object o){System.out.println(o);}
 	public static int r(int x){return (int)(Math.random()*x);}
-	public static void main(String args[]){new Tafl();}
+	public static void main(String args[]){new SquareTactics();}
 }
