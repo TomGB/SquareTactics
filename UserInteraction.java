@@ -27,7 +27,7 @@ public class UserInteraction extends JFrame{
 	int frameY = 70;
 	Font f = new Font("Dialog", Font.PLAIN, 16);
 
-	TextBox reset,load,save,rules,undo,startgame, blackWinText,whiteWinText,whiteTurnText,blackTurnText;
+	TextBox reset,load,save,rules,undo,startgame, editarmy, blackWinText,whiteWinText,whiteTurnText,blackTurnText;
 
 	String 	rulesText = "Square Tactics is similar to chess in that you must put\nthe opponents King in check mate.\nThis is where the similarities end!";
 
@@ -108,11 +108,16 @@ public class UserInteraction extends JFrame{
 				squaretactics.undo();
 			}
 		};
-		startgame = new TextBox(squaretactics, 70,10,50,40,"Start Game"){
+		startgame = new TextBox(squaretactics, 70,10,300,40, "Start Default Chess Game"){
 			public void do_action(){
-				p("start game");
+				p("Start Default Chess Game");
 				squaretactics.myGUI.repaint();
 				squaretactics.current_stage = "in game";
+			}
+		};
+		editarmy = new TextBox(squaretactics, 70,80,300,40,"Edit Army"){
+			public void do_action(){
+				p("edit army");
 			}
 		};
 
@@ -139,6 +144,7 @@ public class UserInteraction extends JFrame{
 
 				if(squaretactics.current_stage == "main menu"){
 					startgame.draw(g);
+					editarmy.draw(g);
 
 				}else if(squaretactics.current_stage == "in game"){
 
