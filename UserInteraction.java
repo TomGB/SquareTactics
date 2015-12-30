@@ -111,13 +111,15 @@ public class UserInteraction extends JFrame{
 		startgame = new TextBox(squaretactics, 70,10,300,40, "Start Default Chess Game"){
 			public void do_action(){
 				p("Start Default Chess Game");
-				squaretactics.myGUI.repaint();
 				squaretactics.current_stage = "in game";
+				squaretactics.myGUI.repaint();
 			}
 		};
 		editarmy = new TextBox(squaretactics, 70,80,300,40,"Edit Army"){
 			public void do_action(){
 				p("edit army");
+				squaretactics.current_stage = "edit army";
+				squaretactics.myGUI.repaint();
 			}
 		};
 
@@ -143,6 +145,7 @@ public class UserInteraction extends JFrame{
 				AffineTransform at = g2.getTransform();
 
 				if(squaretactics.current_stage == "main menu"){
+					g.drawImage(background,50,50,boardWidth-100-3,boardWidth-100-3,null);
 					startgame.draw(g);
 					editarmy.draw(g);
 
@@ -244,6 +247,34 @@ public class UserInteraction extends JFrame{
 							blackTurnText.draw(g);
 						}
 
+					}
+				}else if(squaretactics.current_stage == "edit army"){
+
+					//number of points left in a bar with each piece as a color taking up part of the bar
+					//help box telling you hoe to use the interface
+					//pieces
+					//moves
+
+					for (int i=0; i<5; i++) {
+						for (int j=0; j<5; j++) {
+
+							g.setColor(new Color(255,255,255,200));
+							if(((i+j*8)+(j%2))%2==0){
+								g.setColor(new Color(100,100,100,200));
+							}
+							g.fillRect(50+gridSpace*i,50+gridSpace*j,gridSpace,gridSpace);
+							g.setColor(Color.black);
+							g.drawRect(50+gridSpace*i,50+gridSpace*j,gridSpace,gridSpace);
+
+							// Piece tempPiece = squaretactics.board.get(i,j);
+							// if(tempPiece!=null){
+							// 	if(icons){
+							// 		drawPiece(tempPiece,i,j,g);
+							// 	}else{
+							// 		drawPieceImage(tempPiece,i,j,g);
+							// 	}
+							// }
+						}
 					}
 				}
 			}
@@ -360,9 +391,7 @@ public class UserInteraction extends JFrame{
 					TextBox.CHECK_CLICK(mX, mY);
 				}
 			}else if(squaretactics.current_stage == "main menu"){
-				if(startgame.inside(mX,mY)){
-					TextBox.CHECK_CLICK(mX, mY);
-				}
+				TextBox.CHECK_CLICK(mX, mY);
 			}
 		}
 	}
