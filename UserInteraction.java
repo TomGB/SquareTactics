@@ -144,10 +144,12 @@ public class UserInteraction extends JFrame{
 				g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); //anti alias to make lines smooth
 				AffineTransform at = g2.getTransform();
 
+				TextBox.HIDE_ALL();
+
 				if(squaretactics.current_stage == "main menu"){
 					g.drawImage(background,50,50,boardWidth-100-3,boardWidth-100-3,null);
-					startgame.draw(g);
-					editarmy.draw(g);
+					startgame.set_visible(true);
+					editarmy.set_visible(true);
 
 				}else if(squaretactics.current_stage == "in game"){
 
@@ -198,9 +200,9 @@ public class UserInteraction extends JFrame{
 					}
 
 					if(squaretactics.checkMate&&squaretactics.whiteTurn){
-						blackWinText.draw(g);
+						blackWinText.set_visible(true);
 					}else if(squaretactics.checkMate&&!squaretactics.whiteTurn){
-						whiteWinText.draw(g);
+						whiteWinText.set_visible(true);
 					}else{
 						if(squaretactics.rules){
 
@@ -233,18 +235,20 @@ public class UserInteraction extends JFrame{
 							}
 						}
 
-						undo.draw(g);
-						save.draw(g);
-						load.draw(g);
-						reset.draw(g);
-						rules.draw(g);
+
+
+						undo.set_visible(true);
+						save.set_visible(true);
+						load.set_visible(true);
+						reset.set_visible(true);
+						rules.set_visible(true);
 						whiteTurnText.set_active();
 						blackTurnText.set_active();
 
 						if(squaretactics.whiteTurn){
-							whiteTurnText.draw(g);
+							whiteTurnText.set_visible(true);
 						}else{
-							blackTurnText.draw(g);
+							blackTurnText.set_visible(true);
 						}
 
 					}
@@ -277,6 +281,8 @@ public class UserInteraction extends JFrame{
 						}
 					}
 				}
+
+				TextBox.DRAW_ALL(g);
 			}
 		};
 

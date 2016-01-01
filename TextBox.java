@@ -10,7 +10,7 @@ class TextBox {
 	SquareTactics squaretactics;
 
 	int posX, posY, width, height;
-	boolean active = true;
+	boolean active = true, visible = false;
 	String text;
 	Image image;
 	final Color light = new Color(255,255,255,200);
@@ -39,7 +39,7 @@ class TextBox {
 
 	public static boolean CHECK_HOVER(int mX, int mY){
 		for(TextBox text_box : ALL_TEXT_BOXES){
-  			if(text_box.inside(mX, mY)){
+  			if(text_box.visible && text_box.active && text_box.inside(mX, mY)){
   				text_box.on_hover();
   			}
 		}
@@ -48,9 +48,23 @@ class TextBox {
 
 	public static void CHECK_CLICK(int mX, int mY){
 		for(TextBox text_box : ALL_TEXT_BOXES){
-  			if(text_box.inside(mX, mY)){
+  			if(text_box.visible && text_box.active && text_box.inside(mX, mY)){
   				text_box.on_click();
   			}
+		}
+	}
+
+	public static void DRAW_ALL(Graphics g){
+		for(TextBox text_box : ALL_TEXT_BOXES){
+  			if(text_box.visible){
+  				text_box.draw(g);
+  			}
+		}
+	}
+
+	public static void HIDE_ALL(){
+		for(TextBox text_box : ALL_TEXT_BOXES){
+  			text_box.set_visible(false);
 		}
 	}
 
@@ -83,6 +97,9 @@ class TextBox {
 	}
 	public void set_inactive() {
 		active = false;
+	}
+	public void set_visible(boolean input) {
+		visible = input;
 	}
 	public boolean inside(int x, int y){
 		return (x>posX&&x<posX+width&&y>posY&&y<posY+height);
