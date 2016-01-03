@@ -400,6 +400,8 @@ public class UserInteraction extends JFrame{
 			mouseIsDown=true;
 		}else{
 
+			TextBox.CHECK_CLICK(mX, mY);
+
 			if(squaretactics.current_stage == "in game"){
 				mouseIsDown=false;
 				float tempX=((float)(mX-50)/gridSpace);
@@ -407,13 +409,12 @@ public class UserInteraction extends JFrame{
 				if(tempX<squaretactics.board.width && tempX>=0 && tempY<squaretactics.board.height && tempY>=0){
 					// p("update call");
 					squaretactics.update((int)tempX,(int)tempY);
-				}else if(!squaretactics.checkMate){
-					TextBox.CHECK_CLICK(mX, mY);
-				}else{
-					TextBox.CHECK_CLICK(mX, mY);
+				// }else if(!squaretactics.checkMate){
+					// TextBox.CHECK_CLICK(mX, mY);
+				// }else{
+				// 	TextBox.CHECK_CLICK(mX, mY);
 				}
 			}else if(squaretactics.current_stage == "main menu"){
-				TextBox.CHECK_CLICK(mX, mY);
 			}
 		}
 	}

@@ -11,6 +11,8 @@ class SquareTactics {
 	int boardWidth = 8, boardHeight = 8;
 	Board board = new Board(boardWidth,boardHeight);
 
+	Board editArmyBoard = new Board(2,8);
+
 	boolean whiteTurn=true, rules=false, checkMate = false;
 	boolean debug=false, moveDebug = false;
 	String current_stage = "main menu";
@@ -28,6 +30,8 @@ class SquareTactics {
 		// ai = new ArtificialPlayer(this);
 		board.clear();
 		board.setUp();
+		editArmyBoard.clear();
+		editArmyBoard.setUp();
 		myGUI = new UserInteraction(this);
 	}
 
