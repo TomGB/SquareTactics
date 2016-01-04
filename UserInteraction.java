@@ -296,6 +296,28 @@ public class UserInteraction extends JFrame{
 							// }
 						}
 					}
+
+					for (int i=0; i<2; i++) {
+						for (int j=0; j<8; j++) {
+
+							g.setColor(new Color(255,255,255,200));
+							if(((i+j*8)+(j%2))%2==0){
+								g.setColor(new Color(100,100,100,200));
+							}
+							g.fillRect(50+gridSpace*i,50+gridSpace*j,gridSpace,gridSpace);
+							g.setColor(Color.black);
+							g.drawRect(50+gridSpace*i,50+gridSpace*j,gridSpace,gridSpace);
+
+							Piece tempPiece = squaretactics.editArmyBoard.get(i,j);
+							if(tempPiece!=null){
+								if(icons){
+									drawPiece(tempPiece,i,j,g);
+								}else{
+									drawPieceImage(tempPiece,i,j,g);
+								}
+							}
+						}
+					}
 				}
 
 				TextBox.DRAW_ALL(g);
