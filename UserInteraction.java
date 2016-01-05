@@ -436,7 +436,14 @@ public class UserInteraction extends JFrame{
 				// }else{
 				// 	TextBox.CHECK_CLICK(mX, mY);
 				}
-			}else if(squaretactics.current_stage == "main menu"){
+			}else if(squaretactics.current_stage == "edit army"){
+				mouseIsDown=false;
+				float tempX=((float)(mX-50)/gridSpace);
+				float tempY=((float)(mY-50)/gridSpace);
+				if(tempX<2 && tempX>=0 && tempY<8 && tempY>=0){
+					// p("update call");
+					squaretactics.update((int)tempX,(int)tempY);
+				}
 			}
 		}
 	}

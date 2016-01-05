@@ -55,7 +55,7 @@ class SquareTactics {
 	public void update(int posX, int posY){ //if left button clicked
 		if(rules){
 			rules=false;
-		}else{
+		}else if(current_stage == "in game"){
 			if(checkMate){ //reset if game has ended
 				whiteTurn=true;
 				checkMate=false;
@@ -91,6 +91,11 @@ class SquareTactics {
 					// 	ai.takeTurn();
 					// }
 				}
+			}
+		}else if(current_stage == "edit army"){
+			Piece tempPiece = board.get(posX,posY);
+			if(tempPiece!=null){
+				p(tempPiece.name);
 			}
 		}
 		myGUI.repaint();
