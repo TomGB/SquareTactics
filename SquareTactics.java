@@ -9,9 +9,11 @@ class SquareTactics {
 	UserInteraction myGUI;
 
 	int boardWidth = 8, boardHeight = 8;
-	Board board = new Board(boardWidth,boardHeight);
+	Board board = new Board(boardWidth,boardHeight, 50,50);
 
-	Board editArmyBoard = new Board(2,8);
+	Board editArmyBoard = new Board(2,8, 50,50);
+
+	Board editMovesBoard = new Board(5,5, 300,50);
 
 	boolean whiteTurn=true, rules=false, checkMate = false;
 	boolean debug=false, moveDebug = false;
@@ -32,6 +34,7 @@ class SquareTactics {
 		board.setUp();
 		editArmyBoard.clear();
 		editArmyBoard.setUp();
+		editMovesBoard.clear();
 		myGUI = new UserInteraction(this);
 	}
 
@@ -66,7 +69,7 @@ class SquareTactics {
 				selX=posX;
 				selY=posY;
 				selectedPiece=tempPiece;
-				possibleMoves = calculatePieceMoves(selectedPiece, selX, selY, false);
+				possibleMoves = calculatePieceMoves(selectedPiece, board, selX, selY, false);
 				simulatePieceMoves(whiteTurn?'b':'w');
 			}else if(selectedPiece != null){
 				if(validMove(posX, posY)||debug){ //move piece
@@ -95,7 +98,9 @@ class SquareTactics {
 		}else if(current_stage == "edit army"){
 			Piece tempPiece = board.get(posX,posY);
 			if(tempPiece!=null){
-				p(tempPiece.name);
+				selectedPiece = tempPiece;
+				editMovesBoard.set(2,2,tempPiece);
+				calculatePieceMoves(tempPiece, editMovesBoard, tempPiece.locX, tempPiece.locY, false);
 			}
 		}
 		myGUI.repaint();
@@ -148,7 +153,7 @@ class SquareTactics {
 		}
 
 		for (Piece piece : board.getByColor(color)){
-			calculatePieceMoves(piece, piece.locX, piece.locY, simulated);
+			calculatePieceMoves(piece, board, piece.locX, piece.locY, simulated);
 		}
 
 		if(simulated){
@@ -169,7 +174,7 @@ class SquareTactics {
 			selX=piece.locX;
 			selY=piece.locY;
 			selectedPiece=piece;
-			possibleMoves = calculatePieceMoves(piece, piece.locX, piece.locY, false);
+			possibleMoves = calculatePieceMoves(piece, board, piece.locX, piece.locY, false);
 			simulatePieceMoves(whiteTurn?'w':'b');
 			if(possibleMoves.size()>0){
 				selectedPiece = null;
@@ -187,7 +192,7 @@ class SquareTactics {
 	If a piece could potentially capture the enemy king then add the location of this piece to the pinningKing array list.
 	return the array list of possible moves the piece can do.
 	 */
-	public ArrayList<BoardMoves> calculatePieceMoves(Piece currentPiece, int x, int y, boolean simulated){
+	public ArrayList<BoardMoves> calculatePieceMoves(Piece currentPiece, Board _board, int x, int y, boolean simulated){
 		ArrayList<BoardMoves> tempMoves = new ArrayList<BoardMoves>();
 		for (Move move : currentPiece.moves) {
 
@@ -199,75 +204,135 @@ class SquareTactics {
 			boolean endLoop = false;
 
 			while(!endLoop){
-				if(currentPiece.getColor()=='w'){
-					tempX = tempX-move.y;
-					tempY = tempY-move.x;
-				}else{
-					tempX = tempX+move.y;
-					tempY = tempY+move.x;
-				}
 
-				if(currentPiece.wrapping){
-					if(tempY >= 8){
-						tempY = tempY-8;
-					}else if(tempY < 0){
-						tempY = tempY+8;
-					}
-				}
+				if(_board == editMovesBoard){
+					tempX = tempX+move.x;
+					tempY = tempY+move.y;
 
-				if(move.moveType == "Jump" || move.moveType == "Step"){
-					if(i>2){
-						endLoop = true;
-					}else if(i==2) {
-						if (!possibleSeccond) {
-							boolean not_moved_double_first_move_piece = (move.doubleFirst&&!currentPiece.hasMoved);
-							if (!(not_moved_double_first_move_piece||currentPiece.doubleMove)) {
-								endLoop = true;
+					if(move.moveType == "Jump" || move.moveType == "Step"){
+						if(i>2){
+							endLoop = true;
+						}else if(i==2) {
+							if (!possibleSeccond) {
+								boolean not_moved_double_first_move_piece = (move.doubleFirst&&!currentPiece.hasMoved);
+								if (!(not_moved_double_first_move_piece||currentPiece.doubleMove)) {
+									endLoop = true;
+								}
 							}
 						}
 					}
-				}
 
-				if(tempX>7||tempX<0||tempY>7||tempY<0){
-					if(moveDebug){
-						p("out of bounds");
+					if(tempX>7||tempX<0||tempY>7||tempY<0){
+						if(moveDebug){
+							p("out of bounds");
+						}
+						endLoop=true;
 					}
-					endLoop=true;
-				}
 
-				if(!endLoop){
+					if(!endLoop){
 
-					if(board.get(tempX,tempY)==null){
-						if(!move.canOnlyCapture()){
-							tempMoves.add(new BoardMoves(tempX, tempY, move.moveType));
+						if(_board.get(tempX,tempY)==null){
+							if(!move.canOnlyCapture()){
+								tempMoves.add(new BoardMoves(tempX, tempY, move.moveType));
+								if(moveDebug){
+									p("empty space");
+								}
+								possibleSeccond = true;
+							}
+						}else if(_board.get(tempX,tempY).getColor()==currentPiece.getColor()){
+							endLoop=true;
 							if(moveDebug){
-								p("empty space");
+								p("friendly");
 							}
-							possibleSeccond = true;
-						}
-					}else if(board.get(tempX,tempY).getColor()==currentPiece.getColor()){
-						endLoop=true;
-						if(moveDebug){
-							p("friendly");
-						}
-					}else if(!move.canOnlyMove()&&board.get(tempX,tempY).getColor()!=currentPiece.getColor()){
-						tempMoves.add(new BoardMoves(tempX, tempY, move.moveType));
-						endLoop=true;
-						if(board.get(tempX,tempY).name=='k'){
-							if(simulated){
-								pinningTemp.add(new BoardMoves(x,y,"checkPiece"));
-							}else{
-								pinningKing.add(new BoardMoves(x,y,"checkPiece"));
-								// p("added to pinning king array");
+						}else if(!move.canOnlyMove()&&_board.get(tempX,tempY).getColor()!=currentPiece.getColor()){
+							tempMoves.add(new BoardMoves(tempX, tempY, move.moveType));
+							endLoop=true;
+							if(_board.get(tempX,tempY).name=='k'){
+								if(simulated){
+									pinningTemp.add(new BoardMoves(x,y,"checkPiece"));
+								}else{
+									pinningKing.add(new BoardMoves(x,y,"checkPiece"));
+									// p("added to pinning king array");
+								}
 							}
-						}
-						if(moveDebug){
-							p("enemy");
+							if(moveDebug){
+								p("enemy");
+							}
 						}
 					}
+					i++;
+				}else{
+					if(currentPiece.getColor()=='w'){
+						tempX = tempX-move.y;
+						tempY = tempY-move.x;
+					}else{
+						tempX = tempX+move.y;
+						tempY = tempY+move.x;
+					}
+
+					if(currentPiece.wrapping){
+						if(tempY >= 8){
+							tempY = tempY-8;
+						}else if(tempY < 0){
+							tempY = tempY+8;
+						}
+					}
+
+					if(move.moveType == "Jump" || move.moveType == "Step"){
+						if(i>2){
+							endLoop = true;
+						}else if(i==2) {
+							if (!possibleSeccond) {
+								boolean not_moved_double_first_move_piece = (move.doubleFirst&&!currentPiece.hasMoved);
+								if (!(not_moved_double_first_move_piece||currentPiece.doubleMove)) {
+									endLoop = true;
+								}
+							}
+						}
+					}
+
+					if(tempX>7||tempX<0||tempY>7||tempY<0){
+						if(moveDebug){
+							p("out of bounds");
+						}
+						endLoop=true;
+					}
+
+					if(!endLoop){
+
+						if(_board.get(tempX,tempY)==null){
+							if(!move.canOnlyCapture()){
+								tempMoves.add(new BoardMoves(tempX, tempY, move.moveType));
+								if(moveDebug){
+									p("empty space");
+								}
+								possibleSeccond = true;
+							}
+						}else if(_board.get(tempX,tempY).getColor()==currentPiece.getColor()){
+							endLoop=true;
+							if(moveDebug){
+								p("friendly");
+							}
+						}else if(!move.canOnlyMove()&&_board.get(tempX,tempY).getColor()!=currentPiece.getColor()){
+							tempMoves.add(new BoardMoves(tempX, tempY, move.moveType));
+							endLoop=true;
+							if(_board.get(tempX,tempY).name=='k'){
+								if(simulated){
+									pinningTemp.add(new BoardMoves(x,y,"checkPiece"));
+								}else{
+									pinningKing.add(new BoardMoves(x,y,"checkPiece"));
+									// p("added to pinning king array");
+								}
+							}
+							if(moveDebug){
+								p("enemy");
+							}
+						}
+					}
+					i++;
 				}
-				i++;
 			}
+				
 		}
 		return tempMoves;
 	}

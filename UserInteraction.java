@@ -171,7 +171,7 @@ public class UserInteraction extends JFrame{
 								if(icons){
 									drawPiece(tempPiece,i,j,g);
 								}else{
-									drawPieceImage(tempPiece,i,j,g);
+									drawPieceImage(tempPiece, squaretactics.board, i,j,g);
 								}
 							}
 						}
@@ -272,7 +272,7 @@ public class UserInteraction extends JFrame{
 							// 	if(icons){
 							// 		drawPiece(tempPiece,i,j,g);
 							// 	}else{
-							// 		drawPieceImage(tempPiece,i,j,g);
+							// 		drawPieceImage(tempPiece, squaretactics.board, i,j,g);
 							// 	}
 							// }
 						}
@@ -291,7 +291,7 @@ public class UserInteraction extends JFrame{
 							// 	if(icons){
 							// 		drawPiece(tempPiece,i,j,g);
 							// 	}else{
-							// 		drawPieceImage(tempPiece,i,j,g);
+							// 		drawPieceImage(tempPiece, squaretactics.board, i,j,g);
 							// 	}
 							// }
 						}
@@ -313,9 +313,49 @@ public class UserInteraction extends JFrame{
 								if(icons){
 									drawPiece(tempPiece,i,j,g);
 								}else{
-									drawPieceImage(tempPiece,i,j,g);
+									drawPieceImage(tempPiece, squaretactics.editArmyBoard, i,j,g);
 								}
 							}
+						}
+					}
+
+					for (int i=0; i<5; i++) {
+						for (int j=0; j<5; j++) {
+
+							g.setColor(new Color(255,255,255,200));
+							if(((i+j*8)+(j%2))%2==0){
+								g.setColor(new Color(100,100,100,200));
+							}
+							g.fillRect(300+gridSpace*i,50+gridSpace*j,gridSpace,gridSpace);
+							g.setColor(Color.black);
+							g.drawRect(300+gridSpace*i,50+gridSpace*j,gridSpace,gridSpace);
+
+							Piece tempPiece = squaretactics.editMovesBoard.get(i,j);
+							if(tempPiece!=null){
+								if(icons){
+									drawPiece(tempPiece,i,j,g);
+								}else{
+									drawPieceImage(tempPiece, squaretactics.editMovesBoard, i,j,g);
+								}
+							}
+						}
+					}
+
+					if(squaretactics.selectedPiece!=null){
+
+						p("inside draw moves");
+						for (int i=0; i<squaretactics.possibleMoves.size(); i++) {
+							BoardMoves move = squaretactics.possibleMoves.get(i);
+							if(move.moveType=="Jump"){
+								g.setColor(new Color(200,200,0,50));
+							}else if(move.moveType=="Step"){
+								g.setColor(new Color(0,0,200,50));
+							}else if(move.moveType=="Slide"){
+								g.setColor(new Color(200,0,0,50));
+							}
+							g.fillRect(300+gridSpace*move.x,50+gridSpace*move.y,gridSpace,gridSpace);
+
+							p(300+gridSpace*move.x +","+ 50+gridSpace*move.y +","+ gridSpace +","+ gridSpace);
 						}
 					}
 				}
@@ -354,7 +394,7 @@ public class UserInteraction extends JFrame{
 		g.drawOval(50+gridSpace*i+pieceSpace,50+gridSpace*j+pieceSpace,pieceRad,pieceRad);
 		g.drawString(""+piece.getName(),50+gridSpace*i+pieceSpace+14,50+gridSpace*j+pieceSpace+23);
 	}
-	public void drawPieceImage(Piece piece, int i, int j, Graphics g){
+	public void drawPieceImage(Piece piece, Board _board, int i, int j, Graphics g){
 		int imageNum=0;
 		if(piece.getName()=='c'){
 			imageNum = 1;
@@ -372,7 +412,7 @@ public class UserInteraction extends JFrame{
 			imageNum=11-imageNum;
 		}
 
-		g.drawImage(chessPieces[imageNum],50+gridSpace*i+18,50+gridSpace*j,gridSpace-34,gridSpace,null);
+		g.drawImage(chessPieces[imageNum], _board.drawPositionX + gridSpace * i + 18, _board.drawPositionY + gridSpace * j, gridSpace-34,gridSpace,null);
 	}
 	public void setKey(boolean state, int key){
 		// 	 if(key==87){	up=state;}

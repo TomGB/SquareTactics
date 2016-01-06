@@ -5,12 +5,15 @@ class Board {
 	Piece pieces[][];
 	int width, height;
 	int turnNum;
+	int drawPositionX, drawPositionY;
 
 	ArrayList<Piece[][]> history;
 
-	public Board(int _width, int _height){
+	public Board(int _width, int _height, int _posX, int _posY){
 		width = _width;
 		height = _height;
+		drawPositionX = _posX;
+		drawPositionY = _posY;
 		pieces = new Piece[width][height];
 	}
 
