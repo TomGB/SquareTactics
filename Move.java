@@ -10,7 +10,7 @@ class Move {
 
 	boolean capture = true;
 	boolean restricted = false;
-	boolean doubleFirst = false;
+	public boolean doubleFirst = false;
 
 	String moveType;
 

@@ -343,9 +343,15 @@ public class UserInteraction extends JFrame{
 
 					if(squaretactics.selectedPiece!=null){
 
-						p("inside draw moves");
+						p("size: "+squaretactics.possibleMoves.size());
+
 						for (int i=0; i<squaretactics.possibleMoves.size(); i++) {
+
+							String moveText = "";
+							int textLine = 0;
+
 							BoardMoves move = squaretactics.possibleMoves.get(i);
+
 							if(move.moveType=="Jump"){
 								g.setColor(new Color(200,200,0,50));
 							}else if(move.moveType=="Step"){
@@ -353,11 +359,42 @@ public class UserInteraction extends JFrame{
 							}else if(move.moveType=="Slide"){
 								g.setColor(new Color(200,0,0,50));
 							}
+							
 							g.fillRect(300+gridSpace*move.x,50+gridSpace*move.y,gridSpace,gridSpace);
+
+							if(move.moveProperties.doubleFirst){
+								moveText = "Only First Move";
+								g.drawString(moveText, 300+10+gridSpace*move.x,50+20+(textLine*20)+gridSpace*move.y);
+								textLine++;
+							}
+							if(move.moveProperties.restricted && !move.moveProperties.capture){
+								moveText = "Only Move";
+								g.drawString(moveText, 300+10+gridSpace*move.x,50+20+(textLine*20)+gridSpace*move.y);
+								textLine++;
+							}
 
 							p(300+gridSpace*move.x +","+ 50+gridSpace*move.y +","+ gridSpace +","+ gridSpace);
 						}
+
+						g.setColor(Color.BLACK);
+
+						int textLine = 0;
+
+						g.drawString("Piece Name: "+squaretactics.selectedPiece.name, 300, 500 + textLine*20);
+						textLine++;
+						g.drawString("Number of Moves: "+squaretactics.selectedPiece.moves.size(), 300, 500 + textLine*20);
+						textLine++;
+						for (Move thisMove : squaretactics.selectedPiece.moves) {
+							g.drawString("Move Type: "+thisMove.moveType+", Direction: "+thisMove.x+","+thisMove.y, 300, 500 + textLine*20);
+							textLine++;
+						}
+						g.drawString("Wrapping: "+squaretactics.selectedPiece.wrapping, 300, 500 + textLine*20);
+						textLine++;
+						g.drawString("Double Move: "+squaretactics.selectedPiece.doubleMove, 300, 500 + textLine*20);
+						textLine++;
 					}
+
+					
 				}
 
 				TextBox.DRAW_ALL(g);

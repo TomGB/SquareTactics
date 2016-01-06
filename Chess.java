@@ -42,7 +42,7 @@ class Chess {
 		for (int i=0; i<8; i++) {
 			set(1,i,new Piece('b','p',pawnMoves));
 		}
-		set(0,3,new Piece('b','q', queenMoves	, new int[]{Piece.DOUBLEMOVE, Piece.PROMOTION}));
+		set(0,3,new Piece('b','q', queenMoves	, new int[]{Piece.PROMOTION}));
 		set(0,4,new Piece('b','k', kingMoves	));
 		set(0,0,new Piece('b','c', castleMoves	));
 		set(0,7,new Piece('b','c', castleMoves	));
