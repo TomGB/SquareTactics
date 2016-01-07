@@ -382,6 +382,8 @@ public class UserInteraction extends JFrame{
 
 						g.drawString("Piece Name: "+squaretactics.selectedPiece.name, 300, 500 + textLine*20);
 						textLine++;
+						g.drawString("Piece Cost: "+squaretactics.selectedPiece.costValue, 300, 500 + textLine*20);
+						textLine++;
 						g.drawString("Number of Moves: "+squaretactics.selectedPiece.moves.size(), 300, 500 + textLine*20);
 						textLine++;
 						for (Move thisMove : squaretactics.selectedPiece.moves) {

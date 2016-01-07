@@ -13,6 +13,8 @@ class Piece {
 	boolean wrapping = false;
 	boolean doubleMove = false;
 	boolean alive = true;
+
+	int costValue = 0;
 	
 	int[] abilities;
 
@@ -34,6 +36,7 @@ class Piece {
 		color = _color;
 		name = _name;
 		moves = _moves;
+		constructor();
 	}
 
 	public Piece(char _color, char _name, List<Move> _moves, int[] _abilities){
@@ -47,6 +50,17 @@ class Piece {
 				wrapping = true;
 			}else if(abilities[i]==DOUBLEMOVE){
 				doubleMove = true;
+			}
+		}
+		constructor();
+	}
+
+	public void constructor(){
+		for (Move thisMove : moves ) {
+			System.out.println(thisMove.moveType);
+			if(thisMove.moveType == "Step"){
+				System.out.println("step move");
+				costValue++;
 			}
 		}
 	}
