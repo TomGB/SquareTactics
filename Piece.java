@@ -56,6 +56,9 @@ class Piece {
 	}
 
 	public void constructor(){
+
+		//calculate the cost value of the piece with it's current moves
+
 		for (Move thisMove : moves ) {
 			System.out.println(thisMove.moveType);
 			if(thisMove.moveType == "Step"){
