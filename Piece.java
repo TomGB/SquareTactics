@@ -14,6 +14,8 @@ class Piece {
 	boolean doubleMove = false;
 	boolean alive = true;
 
+	boolean hasJumpingMoves = false;
+
 	int costValue = 0;
 	
 	int[] abilities;
@@ -65,6 +67,23 @@ class Piece {
 				System.out.println("step move");
 				costValue++;
 			}
+			if(thisMove.moveType == "Slide"){
+				System.out.println("slide move");
+				costValue+=2;
+			}
+			if(thisMove.moveType == "Jump"){
+				hasJumpingMoves = true;
+				System.out.println("slide move");
+				costValue++;
+			}
+		}
+
+		if(hasJumpingMoves){
+			costValue+=2;
+		}
+
+		if(wrapping){
+			costValue+=2;
 		}
 	}
 
