@@ -301,7 +301,7 @@ class SquareTactics {
 
 					if(!endLoop){
 
-						if(_board.get(tempX,tempY)==null){
+						if(_board.get(tempX,tempY) == null){
 							if(!move.canOnlyCapture()){
 								tempMoves.add(new BoardMoves(tempX, tempY, move.moveType, move));
 								if(moveDebug){
@@ -345,7 +345,6 @@ class SquareTactics {
 			selectedPiece = null;
 			possibleMoves = null;
 			pinningKing.clear();
-			possibleMoves = null;
 			myGUI.repaint();
 		}
 	}
