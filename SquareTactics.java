@@ -239,25 +239,17 @@ class SquareTactics {
 									p("empty space");
 								}
 								possibleSeccond = true;
+							} else if(!move.canOnlyMove()){
+							tempMoves.add(new BoardMoves(tempX, tempY, move.moveType, move));
+							endLoop=true;
+							if(moveDebug){
+								p("enemy");
 							}
+						}
 						}else if(_board.get(tempX,tempY).getColor()==currentPiece.getColor()){
 							endLoop=true;
 							if(moveDebug){
 								p("friendly");
-							}
-						}else if(!move.canOnlyMove()&&_board.get(tempX,tempY).getColor()!=currentPiece.getColor()){
-							tempMoves.add(new BoardMoves(tempX, tempY, move.moveType, move));
-							endLoop=true;
-							if(_board.get(tempX,tempY).name=='k'){
-								if(simulated){
-									pinningTemp.add(new BoardMoves(x,y,"checkPiece"));
-								}else{
-									pinningKing.add(new BoardMoves(x,y,"checkPiece"));
-									// p("added to pinning king array");
-								}
-							}
-							if(moveDebug){
-								p("enemy");
 							}
 						}
 					}

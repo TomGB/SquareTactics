@@ -372,6 +372,16 @@ public class UserInteraction extends JFrame{
 								g.drawString(moveText, 300+10+gridSpace*move.x,50+20+(textLine*20)+gridSpace*move.y);
 								textLine++;
 							}
+							if(move.moveProperties.restricted && !move.moveProperties.capture){
+								moveText = "Only Move";
+								g.drawString(moveText, 300+10+gridSpace*move.x,50+20+(textLine*20)+gridSpace*move.y);
+								textLine++;
+							}
+							if(move.moveProperties.canOnlyCapture()){
+								moveText = "Only Capture";
+								g.drawString(moveText, 300+10+gridSpace*move.x,50+20+(textLine*20)+gridSpace*move.y);
+								textLine++;
+							}
 
 							p(300+gridSpace*move.x +","+ 50+gridSpace*move.y +","+ gridSpace +","+ gridSpace);
 						}
