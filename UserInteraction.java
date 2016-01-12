@@ -362,6 +362,9 @@ public class UserInteraction extends JFrame{
 							
 							g.fillRect(300+gridSpace*move.x,50+gridSpace*move.y,gridSpace,gridSpace);
 
+
+							//should there be symbols to indicate what a move is
+							//on hover tips would also be useful, would this be a separate class?
 							if(move.moveProperties.doubleFirst){
 								moveText = "Only First Move";
 								g.drawString(moveText, 300+10+gridSpace*move.x,50+20+(textLine*20)+gridSpace*move.y);
