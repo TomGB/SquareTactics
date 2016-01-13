@@ -11,12 +11,12 @@ class Piece {
 	char name ;
 	List<Move> moves;
 	boolean wrapping = false;
-	boolean doubleMove = false;
+	boolean double_move = false;
 	boolean alive = true;
 
-	boolean hasJumpingMoves = false;
+	boolean has_jumping_moves = false;
 
-	int costValue = 0;
+	int cost_value = 0;
 	
 	int[] abilities;
 
@@ -30,7 +30,7 @@ class Piece {
 		name = oldPiece.name;
 		moves = oldPiece.moves;
 		wrapping = oldPiece.wrapping;
-		doubleMove = oldPiece.doubleMove;
+		double_move = oldPiece.double_move;
 		hasMoved = oldPiece.hasMoved;
 	}
 
@@ -51,7 +51,7 @@ class Piece {
 			if(abilities[i]==WRAPPING){
 				wrapping = true;
 			}else if(abilities[i]==DOUBLEMOVE){
-				doubleMove = true;
+				double_move = true;
 			}
 		}
 		constructor();
@@ -65,25 +65,25 @@ class Piece {
 			System.out.println(thisMove.moveType);
 			if(thisMove.moveType == "Step"){
 				System.out.println("step move");
-				costValue++;
+				cost_value++;
 			}
 			if(thisMove.moveType == "Slide"){
 				System.out.println("slide move");
-				costValue+=2;
+				cost_value+=2;
 			}
 			if(thisMove.moveType == "Jump"){
-				hasJumpingMoves = true;
+				has_jumping_moves = true;
 				System.out.println("slide move");
-				costValue++;
+				cost_value++;
 			}
 		}
 
-		if(hasJumpingMoves){
-			costValue+=2;
+		if(has_jumping_moves){
+			cost_value+=2;
 		}
 
 		if(wrapping){
-			costValue+=2;
+			cost_value+=2;
 		}
 	}
 
@@ -98,6 +98,10 @@ class Piece {
 
 	public char getName(){
 		return name;
+	}
+
+	public int getCostValue(){
+		return cost_value;
 	}
 
 

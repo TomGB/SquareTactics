@@ -217,7 +217,7 @@ class SquareTactics {
 						}else if(i==2) {
 							if(move.doubleFirst&&!currentPiece.hasMoved){
 
-							}else if(!currentPiece.doubleMove){
+							}else if(!currentPiece.double_move){
 								endLoop = true;
 							}
 						}
@@ -277,7 +277,7 @@ class SquareTactics {
 						}else if(i==2) {
 							if (!possibleSeccond) {
 								boolean not_moved_double_first_move_piece = (move.doubleFirst&&!currentPiece.hasMoved);
-								if (!(not_moved_double_first_move_piece||currentPiece.doubleMove)) {
+								if (!(not_moved_double_first_move_piece||currentPiece.double_move)) {
 									endLoop = true;
 								}
 							}

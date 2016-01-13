@@ -367,22 +367,20 @@ public class UserInteraction extends JFrame{
 							//on hover tips would also be useful, would this be a separate class?
 							if(move.moveProperties.doubleFirst){
 								moveText = "Only First Move";
-								g.drawString(moveText, 300+10+gridSpace*move.x,50+20+(textLine*20)+gridSpace*move.y);
+								int width_offset = g.getFontMetrics().stringWidth(moveText)/2;
+								g.drawString(moveText, 300 + gridSpace*move.x + 40 - width_offset, 50+20+(textLine*20)+gridSpace*move.y);
 								textLine++;
 							}
 							if(move.moveProperties.restricted && !move.moveProperties.capture){
 								moveText = "Only Move";
-								g.drawString(moveText, 300+10+gridSpace*move.x,50+20+(textLine*20)+gridSpace*move.y);
-								textLine++;
-							}
-							if(move.moveProperties.restricted && !move.moveProperties.capture){
-								moveText = "Only Move";
-								g.drawString(moveText, 300+10+gridSpace*move.x,50+20+(textLine*20)+gridSpace*move.y);
+								int width_offset = g.getFontMetrics().stringWidth(moveText)/2;
+								g.drawString(moveText, 300 + gridSpace*move.x + 40 - width_offset, 50+20+(textLine*20)+gridSpace*move.y);
 								textLine++;
 							}
 							if(move.moveProperties.canOnlyCapture()){
 								moveText = "Only Capture";
-								g.drawString(moveText, 300+10+gridSpace*move.x,50+20+(textLine*20)+gridSpace*move.y);
+								int width_offset = g.getFontMetrics().stringWidth(moveText)/2;
+								g.drawString(moveText, 300 + gridSpace*move.x + 40 - width_offset, 50+20+(textLine*20)+gridSpace*move.y);
 								textLine++;
 							}
 
@@ -393,9 +391,9 @@ public class UserInteraction extends JFrame{
 
 						int textLine = 0;
 
-						g.drawString("Piece Name: "+squaretactics.selectedPiece.name, 300, 500 + textLine*20);
+						g.drawString("Piece Name: "+squaretactics.selectedPiece.getName(), 300, 500 + textLine*20);
 						textLine++;
-						g.drawString("Piece Cost: "+squaretactics.selectedPiece.costValue, 300, 500 + textLine*20);
+						g.drawString("Piece Cost: "+squaretactics.selectedPiece.getCostValue(), 300, 500 + textLine*20);
 						textLine++;
 						g.drawString("Number of Moves: "+squaretactics.selectedPiece.moves.size(), 300, 500 + textLine*20);
 						textLine++;
@@ -405,7 +403,7 @@ public class UserInteraction extends JFrame{
 						}
 						g.drawString("Wrapping: "+squaretactics.selectedPiece.wrapping, 300, 500 + textLine*20);
 						textLine++;
-						g.drawString("Double Move: "+squaretactics.selectedPiece.doubleMove, 300, 500 + textLine*20);
+						g.drawString("Double Move: "+squaretactics.selectedPiece.double_move, 300, 500 + textLine*20);
 						textLine++;
 					}
 
@@ -468,11 +466,11 @@ public class UserInteraction extends JFrame{
 		g.setColor(Color.white);
 		g.fillOval(_board.drawPositionX + gridSpace * i + 8, _board.drawPositionY + gridSpace * j + 10, 25, 25);
 
-		int point_text_width = g.getFontMetrics().stringWidth(""+piece.costValue);
+		int point_text_width = g.getFontMetrics().stringWidth(""+piece.getCostValue());
 		g.setColor(Color.black);
 		g.drawOval(_board.drawPositionX + gridSpace * i + 8, _board.drawPositionY + gridSpace * j + 10, 25, 25);
 		g.setColor(Color.black);
-		g.drawString(""+piece.costValue, _board.drawPositionX + gridSpace * i + 21 - (point_text_width/2), _board.drawPositionY + gridSpace * j + 30);
+		g.drawString(""+piece.getCostValue(), _board.drawPositionX + gridSpace * i + 21 - (point_text_width/2), _board.drawPositionY + gridSpace * j + 30);
 	}
 	public void setKey(boolean state, int key){
 		// 	 if(key==87){	up=state;}
