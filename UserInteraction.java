@@ -171,7 +171,7 @@ public class UserInteraction extends JFrame{
 								if(icons){
 									drawPiece(tempPiece,i,j,g);
 								}else{
-									drawPieceImage(tempPiece, squaretactics.board, i,j,g);
+									drawPieceImage(tempPiece, squaretactics.board, i,j,g, false);
 								}
 							}
 						}
@@ -313,7 +313,7 @@ public class UserInteraction extends JFrame{
 								if(icons){
 									drawPiece(tempPiece,i,j,g);
 								}else{
-									drawPieceImage(tempPiece, squaretactics.editArmyBoard, i,j,g);
+									drawPieceImage(tempPiece, squaretactics.editArmyBoard, i,j,g ,true);
 								}
 							}
 						}
@@ -335,7 +335,7 @@ public class UserInteraction extends JFrame{
 								if(icons){
 									drawPiece(tempPiece,i,j,g);
 								}else{
-									drawPieceImage(tempPiece, squaretactics.editMovesBoard, i,j,g);
+									drawPieceImage(tempPiece, squaretactics.editMovesBoard, i,j,g, true);
 								}
 							}
 						}
@@ -446,7 +446,7 @@ public class UserInteraction extends JFrame{
 		g.drawOval(50+gridSpace*i+pieceSpace,50+gridSpace*j+pieceSpace,pieceRad,pieceRad);
 		g.drawString(""+piece.getName(),50+gridSpace*i+pieceSpace+14,50+gridSpace*j+pieceSpace+23);
 	}
-	public void drawPieceImage(Piece piece, Board _board, int i, int j, Graphics g){
+	public void drawPieceImage(Piece piece, Board _board, int i, int j, Graphics g, boolean show_cost){
 		int imageNum=0;
 		if(piece.getName()=='c'){
 			imageNum = 1;
@@ -465,6 +465,14 @@ public class UserInteraction extends JFrame{
 		}
 
 		g.drawImage(chessPieces[imageNum], _board.drawPositionX + gridSpace * i + 18, _board.drawPositionY + gridSpace * j, gridSpace-34,gridSpace,null);
+		g.setColor(Color.white);
+		g.fillOval(_board.drawPositionX + gridSpace * i + 8, _board.drawPositionY + gridSpace * j + 10, 25, 25);
+
+		int point_text_width = g.getFontMetrics().stringWidth(""+piece.costValue);
+		g.setColor(Color.black);
+		g.drawOval(_board.drawPositionX + gridSpace * i + 8, _board.drawPositionY + gridSpace * j + 10, 25, 25);
+		g.setColor(Color.black);
+		g.drawString(""+piece.costValue, _board.drawPositionX + gridSpace * i + 21 - (point_text_width/2), _board.drawPositionY + gridSpace * j + 30);
 	}
 	public void setKey(boolean state, int key){
 		// 	 if(key==87){	up=state;}
