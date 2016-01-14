@@ -365,7 +365,7 @@ public class UserInteraction extends JFrame{
 
 							//should there be symbols to indicate what a move is
 							//on hover tips would also be useful, would this be a separate class?
-							if(move.moveProperties.doubleFirst){
+							if(move.only_first_move){
 								moveText = "Only First Move";
 								int width_offset = g.getFontMetrics().stringWidth(moveText)/2;
 								g.drawString(moveText, 300 + gridSpace*move.x + 40 - width_offset, 50+20+(textLine*20)+gridSpace*move.y);

@@ -206,6 +206,8 @@ class SquareTactics {
 
 			while(!endLoop){
 
+				boolean only_first_move = false;
+
 				if(_board == editMovesBoard){
 
 					tempX = tempX-move.x;
@@ -216,7 +218,7 @@ class SquareTactics {
 							endLoop = true;
 						}else if(i==2) {
 							if(move.doubleFirst&&!currentPiece.hasMoved){
-
+								only_first_move = true;
 							}else if(!currentPiece.double_move){
 								endLoop = true;
 							}
@@ -234,18 +236,18 @@ class SquareTactics {
 
 						if(_board.get(tempX,tempY)==null){
 							if(!move.canOnlyCapture()){
-								tempMoves.add(new BoardMoves(tempX, tempY, move.moveType, move));
+								tempMoves.add(new BoardMoves(tempX, tempY, move.moveType, move, only_first_move));
 								if(moveDebug){
 									p("empty space");
 								}
 								possibleSeccond = true;
 							} else if(!move.canOnlyMove()){
-							tempMoves.add(new BoardMoves(tempX, tempY, move.moveType, move));
-							endLoop=true;
-							if(moveDebug){
-								p("enemy");
+								tempMoves.add(new BoardMoves(tempX, tempY, move.moveType, move));
+								endLoop=true;
+								if(moveDebug){
+									p("enemy");
+								}
 							}
-						}
 						}else if(_board.get(tempX,tempY).getColor()==currentPiece.getColor()){
 							endLoop=true;
 							if(moveDebug){
