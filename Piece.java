@@ -5,7 +5,7 @@ class Piece {
 
 	static int WRAPPING = 1, DOUBLEMOVE = 2, PROMOTION = 3;
 
-	int locX, locY;
+	int loc_x, loc_y;
 
 	char color;
 	char name ;
@@ -24,8 +24,8 @@ class Piece {
 	ArrayList<BoardMoves> possibleMoves = new ArrayList<BoardMoves>();
 
 	public Piece(Piece oldPiece){
-		locX = oldPiece.locX;
-		locY = oldPiece.locY;
+		loc_x = oldPiece.loc_x;
+		loc_y = oldPiece.loc_y;
 		color = oldPiece.color;
 		name = oldPiece.name;
 		moves = oldPiece.moves;
@@ -88,8 +88,8 @@ class Piece {
 	}
 
 	public void setLocation(int x, int y){
-		locX = x;
-		locY = y;
+		loc_x = x;
+		loc_y = y;
 	}
 
 	public char getColor(){
