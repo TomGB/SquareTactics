@@ -9,27 +9,27 @@ class TextBox {
 
 	SquareTactics squaretactics;
 
-	int posX, posY, width, height;
+	int pos_x, pos_y, width, height;
 	boolean active = true, visible = false;
 	String text;
 	Image image;
 	final Color light = new Color(255,255,255,200);
 	final Color dark = new Color(0,0,0,40);
 
-	public TextBox(SquareTactics _squaretactics, int _posX, int _posY, int _width, int _height, String _text){
+	public TextBox(SquareTactics _squaretactics, int _pos_x, int _pos_y, int _width, int _height, String _text){
 		squaretactics = _squaretactics;
-		posX = _posX;
-		posY = _posY;
+		pos_x = _pos_x;
+		pos_y = _pos_y;
 		width = _width;
 		height = _height;
 		text = _text;
 
 		ALL_TEXT_BOXES.add(this);
 	}
-	public TextBox(SquareTactics _squaretactics, int _posX, int _posY, int _width, int _height, Image _image){
+	public TextBox(SquareTactics _squaretactics, int _pos_x, int _pos_y, int _width, int _height, Image _image){
 		squaretactics = _squaretactics;
-		posX = _posX;
-		posY = _posY;
+		pos_x = _pos_x;
+		pos_y = _pos_y;
 		width = _width;
 		height = _height;
 		image = _image;
@@ -83,11 +83,11 @@ class TextBox {
 	}
 	public void draw(Graphics g){
 		g.setColor(active?light:dark);
-		g.fillRect(posX,posY,width,height);
+		g.fillRect(pos_x,pos_y,width,height);
 		g.setColor(Color.black);
-		g.drawRect(posX,posY,width,height);
+		g.drawRect(pos_x,pos_y,width,height);
 		if(text!=null){
-			g.drawString(text,posX+20,posY+26);
+			g.drawString(text,pos_x+20,pos_y+26);
 		}else{
 			g.drawImage(image,74,12, null);
 		}
@@ -102,6 +102,6 @@ class TextBox {
 		visible = input;
 	}
 	public boolean inside(int x, int y){
-		return (x>posX&&x<posX+width&&y>posY&&y<posY+height);
+		return (x>pos_x&&x<pos_x+width&&y>pos_y&&y<pos_y+height);
 	}
 }

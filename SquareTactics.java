@@ -101,7 +101,7 @@ class SquareTactics {
 				selectedPiece = tempPiece;
 				editMovesBoard.set(2,2,tempPiece);
 
-				possibleMoves = calculatePieceMoves(tempPiece, editMovesBoard, tempPiece.locX, tempPiece.locY, false);
+				possibleMoves = calculatePieceMoves(tempPiece, editMovesBoard, tempPiece.loc_x, tempPiece.loc_y, false);
 			}
 		}
 		myGUI.repaint();
@@ -154,7 +154,7 @@ class SquareTactics {
 		}
 
 		for (Piece piece : board.getByColor(color)){
-			calculatePieceMoves(piece, board, piece.locX, piece.locY, simulated);
+			calculatePieceMoves(piece, board, piece.loc_x, piece.loc_y, simulated);
 		}
 
 		if(simulated){
@@ -172,10 +172,10 @@ class SquareTactics {
 	public boolean checkCheckMate(char color){
 
 		for (Piece piece : board.getByColor(color)){
-			selX=piece.locX;
-			selY=piece.locY;
+			selX=piece.loc_x;
+			selY=piece.loc_y;
 			selectedPiece=piece;
-			possibleMoves = calculatePieceMoves(piece, board, piece.locX, piece.locY, false);
+			possibleMoves = calculatePieceMoves(piece, board, piece.loc_x, piece.loc_y, false);
 			simulatePieceMoves(whiteTurn?'w':'b');
 			if(possibleMoves.size()>0){
 				selectedPiece = null;
@@ -213,7 +213,7 @@ class SquareTactics {
 					tempX = tempX-move.x;
 					tempY = tempY-move.y;
 
-					if(move.moveType == "Jump" || move.moveType == "Step"){
+					if(move.move_type == "Jump" || move.move_type == "Step"){
 						if(i>2){
 							endLoop = true;
 						}else if(i==2) {
@@ -236,13 +236,13 @@ class SquareTactics {
 
 						if(_board.get(tempX,tempY)==null){
 							if(!move.canOnlyCapture()){
-								tempMoves.add(new BoardMoves(tempX, tempY, move.moveType, move, only_first_move));
+								tempMoves.add(new BoardMoves(tempX, tempY, move.move_type, move, only_first_move));
 								if(moveDebug){
 									p("empty space");
 								}
 								possibleSeccond = true;
 							} else if(!move.canOnlyMove()){
-								tempMoves.add(new BoardMoves(tempX, tempY, move.moveType, move));
+								tempMoves.add(new BoardMoves(tempX, tempY, move.move_type, move));
 								endLoop=true;
 								if(moveDebug){
 									p("enemy");
@@ -273,7 +273,7 @@ class SquareTactics {
 						}
 					}
 
-					if(move.moveType == "Jump" || move.moveType == "Step"){
+					if(move.move_type == "Jump" || move.move_type == "Step"){
 						if(i>2){
 							endLoop = true;
 						}else if(i==2) {
@@ -297,7 +297,7 @@ class SquareTactics {
 
 						if(_board.get(tempX,tempY) == null){
 							if(!move.canOnlyCapture()){
-								tempMoves.add(new BoardMoves(tempX, tempY, move.moveType, move));
+								tempMoves.add(new BoardMoves(tempX, tempY, move.move_type, move));
 								if(moveDebug){
 									p("empty space");
 								}
@@ -309,7 +309,7 @@ class SquareTactics {
 								p("friendly");
 							}
 						}else if(!move.canOnlyMove()&&_board.get(tempX,tempY).getColor()!=currentPiece.getColor()){
-							tempMoves.add(new BoardMoves(tempX, tempY, move.moveType, move));
+							tempMoves.add(new BoardMoves(tempX, tempY, move.move_type, move));
 							endLoop=true;
 							if(_board.get(tempX,tempY).name=='k'){
 								if(simulated){

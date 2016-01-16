@@ -12,17 +12,17 @@ class Move {
 	boolean restricted = false;
 	public boolean doubleFirst = false;
 
-	String moveType;
+	String move_type;
 
-	public Move(int _x, int _y, String _moveType) {
+	public Move(int _x, int _y, String _move_type) {
 		x = _x;
 		y = _y;
-		moveType = _moveType;
+		move_type = _move_type;
 	}
-	public Move(int _x, int _y, String _moveType, int[] _special) {
+	public Move(int _x, int _y, String _move_type, int[] _special) {
 		x = _x;
 		y = _y;
-		moveType = _moveType;
+		move_type = _move_type;
 		special = _special;
 		for (int i=0; i<special.length; i++) {
 			if(special[i]==ONLYMOVE){
