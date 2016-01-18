@@ -7,6 +7,8 @@ class Board {
 	int turnNum;
 	int drawPositionX, drawPositionY;
 
+	int army_cost = 0;
+
 	ArrayList<Piece[][]> history;
 
 	public Board(int _width, int _height, int _posX, int _posY){
@@ -31,6 +33,15 @@ class Board {
 
 		pieces = new Chess().loadPieces();
 		// pieces = new DeathFromAbove().loadPieces();
+	}
+
+	public int getArmyScore(){
+		int temp_score =0;
+		for (int i=0; i<8; i++) {
+			temp_score += get(0,i).getCostValue();
+			temp_score += get(1,i).getCostValue();
+		}
+		return temp_score;
 	}
 
 	public Piece get(int x,int y){

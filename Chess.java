@@ -64,6 +64,19 @@ class Chess {
 		set(7,5,new Piece('w','b', bishopMoves	));
 	}
 
+	// public Piece get(int x, int y){
+	// 	try{
+	// 		Piece piece = pieces[x][y];
+	// 		if(piece!=null){
+	// 			return piece;
+	// 		}
+	// 	}catch(Exception e){
+	// 		p("out of bounds at: "+x+", "+y);
+	// 	}
+
+	// 	return null;
+	// }
+
 	public void set(int x, int y, Piece piece){
 		try{
 			pieces[x][y]=piece;

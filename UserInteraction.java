@@ -254,6 +254,8 @@ public class UserInteraction extends JFrame{
 					}
 				}else if(squaretactics.current_stage == "edit army"){
 
+					p("army cost= "+ squaretactics.editArmyBoard.getArmyScore());
+
 					//number of points left in a bar with each piece as a color taking up part of the bar
 					//help box telling you hoe to use the interface
 					//pieces
