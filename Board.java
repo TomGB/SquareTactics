@@ -31,7 +31,17 @@ class Board {
 		history = new ArrayList<Piece[][]>();
 		turnNum=0;
 
-		pieces = new Chess().loadPieces();
+		pieces = new Chess().loadPieces('l');
+		Piece other_pieces[][] = new Chess().loadPieces('r');
+
+		for (int i=0; i<8; i++) {
+			for (int j=0; j<8; j++) {
+				if(other_pieces[i][j]!=null){
+					p("i "+i+" j "+j);
+					pieces[i][j] = other_pieces[i][j];
+				}
+			}
+		}
 		// pieces = new DeathFromAbove().loadPieces();
 	}
 
