@@ -400,7 +400,7 @@ public class UserInteraction extends JFrame{
 						g.drawString("Number of Moves: "+squaretactics.selectedPiece.moves.size(), 300, 500 + textLine*20);
 						textLine++;
 						for (Move thisMove : squaretactics.selectedPiece.moves) {
-							g.drawString("Move Type: "+thisMove.move_type+", Direction: "+thisMove.x+","+thisMove.y, 300, 500 + textLine*20);
+							g.drawString("Cost: "+thisMove.getCost()+" Move Type: "+thisMove.move_type+", Direction: "+thisMove.x+","+thisMove.y, 300, 500 + textLine*20);
 							textLine++;
 						}
 						g.drawString("Wrapping: "+squaretactics.selectedPiece.wrapping, 300, 500 + textLine*20);
@@ -465,14 +465,17 @@ public class UserInteraction extends JFrame{
 		}
 
 		g.drawImage(chessPieces[imageNum], _board.drawPositionX + grid_space * i + 18, _board.drawPositionY + grid_space * j, grid_space-34,grid_space,null);
-		g.setColor(Color.white);
-		g.fillOval(_board.drawPositionX + grid_space * i + 8, _board.drawPositionY + grid_space * j + 10, 25, 25);
 
-		int point_text_width = g.getFontMetrics().stringWidth(""+piece.getCostValue());
-		g.setColor(Color.black);
-		g.drawOval(_board.drawPositionX + grid_space * i + 8, _board.drawPositionY + grid_space * j + 10, 25, 25);
-		g.setColor(Color.black);
-		g.drawString(""+piece.getCostValue(), _board.drawPositionX + grid_space * i + 21 - (point_text_width/2), _board.drawPositionY + grid_space * j + 30);
+		if(show_cost){
+			g.setColor(Color.white);
+			g.fillOval(_board.drawPositionX + grid_space * i + 8, _board.drawPositionY + grid_space * j + 10, 25, 25);
+
+			int point_text_width = g.getFontMetrics().stringWidth(""+piece.getCostValue());
+			g.setColor(Color.black);
+			g.drawOval(_board.drawPositionX + grid_space * i + 8, _board.drawPositionY + grid_space * j + 10, 25, 25);
+			g.setColor(Color.black);
+			g.drawString(""+piece.getCostValue(), _board.drawPositionX + grid_space * i + 21 - (point_text_width/2), _board.drawPositionY + grid_space * j + 30);
+		}
 	}
 	public void setKey(boolean state, int key){
 		// 	 if(key==87){	up=state;}

@@ -62,19 +62,11 @@ class Piece {
 		//calculate the cost value of the piece with it's current moves
 
 		for (Move this_move : moves ) {
-			System.out.println(this_move.move_type);
-			if(this_move.move_type == "Step"){
-				System.out.println("step move");
-				cost_value++;
-			}
-			if(this_move.move_type == "Slide"){
-				System.out.println("slide move");
-				cost_value+=2;
-			}
-			if(this_move.move_type == "Jump"){
+
+			cost_value+=this_move.getCost();
+
+			if(this_move.isJumpingMove()){
 				has_jumping_moves = true;
-				System.out.println("slide move");
-				cost_value++;
 			}
 		}
 
@@ -82,7 +74,7 @@ class Piece {
 			cost_value+=2;
 		}
 
-		if(wrapping){
+		if(this.wrapping){
 			cost_value+=2;
 		}
 	}
