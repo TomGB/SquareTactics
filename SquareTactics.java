@@ -217,6 +217,9 @@ class SquareTactics {
 						if(i>2){
 							endLoop = true;
 						}else if(i==2) {
+
+							//Either the has moved variable is not being set or the the logic checking the multiple moves is incorrect.
+
 							if(move.doubleFirst&&!currentPiece.hasMoved){
 								only_first_move = true;
 							}else if(!currentPiece.double_move){
