@@ -73,7 +73,7 @@ class SquareTactics {
 				simulatePieceMoves(whiteTurn?'b':'w');
 			}else if(selectedPiece != null){
 				if(validMove(posX, posY)||debug){ //move piece
-					selectedPiece.hasMoved = true;
+					selectedPiece.moveThePiece();
 					if(board.get(posX,posY)!=null){
 						myGUI.playSound();
 					}
@@ -193,128 +193,91 @@ class SquareTactics {
 	If a piece could potentially capture the enemy king then add the location of this piece to the pinningKing array list.
 	return the array list of possible moves the piece can do.
 	 */
-	public ArrayList<BoardMoves> calculatePieceMoves(Piece currentPiece, Board _board, int x, int y, boolean simulated){
+	public ArrayList<BoardMoves> calculatePieceMoves(Piece current_piece, Board _board, int x, int y, boolean simulated){
+
+		// where can pieces move logic
+		// 
+		// for each move, where can the piece move based on the move type?
+		// 
+		// 		while
+		// 			if position where piece would move to is friendly then cancel loop
+		// 	
+		// 			else if position where piece would move to is empty,
+		// 				if this move can be to an empty space
+		// 					allow piece to move there, continue loop
+		// 				else
+		// 					cancel loop
+		// 			else if position where piece would move to is an enemy,
+		// 				if this move can be a capturing move
+		// 					allow piece to move there and end loop
+		// 				else
+		// 					cancel loop
+		//
+		// 			if move is sliding
+		// 				repeat movement checks for the next location on the board
+		// 			if move is a double
+		// 				repeat movement checks for the next location on the board
+		// 				record that this is the second move
+		// 			if move is a double first move and the piece has not moved
+		// 				repeat movement checks for the next location on the board
+		// 				record that this is the second move
+		// 		repeat while loop if !end_loop
+		// 	end for loop
+
 		ArrayList<BoardMoves> tempMoves = new ArrayList<BoardMoves>();
-		for (Move move : currentPiece.moves) {
+		for (Move move : current_piece.moves) {
 
-			boolean possibleSeccond = false;
-			int i = 1;
-			int tempX = x;
-			int tempY = y;
+			if(!simulated){
+				p("move.hasDoubleFirstMove() "+move.hasDoubleFirstMove());
+				p("current_piece.getHasMoved() "+current_piece.getHasMoved());
+			}
 
-			boolean endLoop = false;
+			int move_number = 1;
+			int temp_x = x;
+			int temp_y = y;
 
-			while(!endLoop){
+			boolean end_loop = false;
 
-				boolean only_first_move = false;
+			do{
 
-				if(_board == editMovesBoard){
-
-					tempX = tempX-move.x;
-					tempY = tempY-move.y;
-
-					if(move.move_type == "Jump" || move.move_type == "Step"){
-						if(i>2){
-							endLoop = true;
-						}else if(i==2) {
-
-							//Either the has moved variable is not being set or the the logic checking the multiple moves is incorrect.
-
-							if(move.doubleFirst&&!currentPiece.hasMoved){
-								only_first_move = true;
-							}else if(!currentPiece.double_move){
-								endLoop = true;
-							}
-						}
-					}
-
-					if(tempX>=_board.width||tempX<0||tempY>=_board.height||tempY<0){
-						if(moveDebug){
-							p("out of bounds");
-						}
-						endLoop=true;
-					}
-
-					if(!endLoop){
-
-						if(_board.get(tempX,tempY)==null){
-							if(!move.canOnlyCapture()){
-								tempMoves.add(new BoardMoves(tempX, tempY, move.move_type, move, only_first_move));
-								if(moveDebug){
-									p("empty space");
-								}
-								possibleSeccond = true;
-							} else if(!move.canOnlyMove()){
-								tempMoves.add(new BoardMoves(tempX, tempY, move.move_type, move));
-								endLoop=true;
-								if(moveDebug){
-									p("enemy");
-								}
-							}
-						}else if(_board.get(tempX,tempY).getColor()==currentPiece.getColor()){
-							endLoop=true;
-							if(moveDebug){
-								p("friendly");
-							}
-						}
-					}
-					i++;
+				if(current_piece.getColor()=='w'){
+					temp_x = temp_x - move.y;
+					temp_y = temp_y - move.x;
 				}else{
-					if(currentPiece.getColor()=='w'){
-						tempX = tempX-move.y;
-						tempY = tempY-move.x;
-					}else{
-						tempX = tempX+move.y;
-						tempY = tempY+move.x;
-					}
+					temp_x = temp_x + move.y;
+					temp_y = temp_y + move.x;
+				}
 
-					if(currentPiece.wrapping){
-						if(tempY >= 8){
-							tempY = tempY-8;
-						}else if(tempY < 0){
-							tempY = tempY+8;
+				if(current_piece.wrapping){
+					if(temp_y >= 8){
+						temp_y = temp_y-8;
+					}else if(temp_y < 0){
+						temp_y = temp_y+8;
+					}
+				}
+
+				if(temp_x<=7&&temp_x>=0&&temp_y<=7&&temp_y>=0){
+					// not out of bounds
+					Piece temp_piece = _board.get(temp_x, temp_y);
+
+					if(temp_piece == null){
+						// there is no piece there
+						if(move.canMoveToEmptySpace()){
+							tempMoves.add(new BoardMoves(temp_x, temp_y, move.move_type, move));
+							move_number++;
+						}else{
+							end_loop = true;
 						}
-					}
+					}else if(temp_piece.getColor() == current_piece.getColor()){
+						// piece is friendly
+						end_loop = true;
 
-					if(move.move_type == "Jump" || move.move_type == "Step"){
-						if(i>2){
-							endLoop = true;
-						}else if(i==2) {
-							if (!possibleSeccond) {
-								boolean not_moved_double_first_move_piece = (move.doubleFirst&&!currentPiece.hasMoved);
-								if (!(not_moved_double_first_move_piece||currentPiece.double_move)) {
-									endLoop = true;
-								}
-							}
-						}
-					}
+					}else if(temp_piece.getColor() != current_piece.getColor()){
+						// piece is enemy
+						if(move.canCaptureEnemyPiece()){
+							tempMoves.add(new BoardMoves(temp_x, temp_y, move.move_type, move));
 
-					if(tempX>7||tempX<0||tempY>7||tempY<0){
-						if(moveDebug){
-							p("out of bounds");
-						}
-						endLoop=true;
-					}
-
-					if(!endLoop){
-
-						if(_board.get(tempX,tempY) == null){
-							if(!move.canOnlyCapture()){
-								tempMoves.add(new BoardMoves(tempX, tempY, move.move_type, move));
-								if(moveDebug){
-									p("empty space");
-								}
-								possibleSeccond = true;
-							}
-						}else if(_board.get(tempX,tempY).getColor()==currentPiece.getColor()){
-							endLoop=true;
-							if(moveDebug){
-								p("friendly");
-							}
-						}else if(!move.canOnlyMove()&&_board.get(tempX,tempY).getColor()!=currentPiece.getColor()){
-							tempMoves.add(new BoardMoves(tempX, tempY, move.move_type, move));
-							endLoop=true;
-							if(_board.get(tempX,tempY).name=='k'){
+							if(_board.get(temp_x,temp_y).name=='k'){
 								if(simulated){
 									pinningTemp.add(new BoardMoves(x,y,"checkPiece"));
 								}else{
@@ -322,14 +285,34 @@ class SquareTactics {
 									// p("added to pinning king array");
 								}
 							}
-							if(moveDebug){
-								p("enemy");
-							}
 						}
+						end_loop = true;
+
 					}
-					i++;
+
+
+					if(move.move_type == "Jump" || move.move_type == "Step"){
+						if(move_number == 1){
+
+							if(move.hasDoubleFirstMove() && !current_piece.getHasMoved()){
+								p("move is a double first move and the piece has not moved");
+								// continue loop
+							}else if(current_piece.getDoubleMove()){
+								// continue loop
+							}else{
+								end_loop = true;
+							}
+						}else if(move_number == 2){
+							end_loop = true;
+						}
+					}else if(move.move_type == "slide"){
+						// continue loop
+					}
+				}else{
+					end_loop=true;
 				}
-			}
+
+			}while(!end_loop);
 				
 		}
 		return tempMoves;

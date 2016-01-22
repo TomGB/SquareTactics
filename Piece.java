@@ -20,7 +20,7 @@ class Piece {
 	
 	int[] abilities;
 
-	boolean hasMoved = false;
+	boolean has_moved = false;
 	ArrayList<BoardMoves> possibleMoves = new ArrayList<BoardMoves>();
 
 	public Piece(Piece oldPiece){
@@ -31,7 +31,7 @@ class Piece {
 		moves = oldPiece.moves;
 		wrapping = oldPiece.wrapping;
 		double_move = oldPiece.double_move;
-		hasMoved = oldPiece.hasMoved;
+		has_moved = oldPiece.has_moved;
 	}
 
 	public Piece(char _color, char _name, List<Move> _moves){
@@ -79,6 +79,18 @@ class Piece {
 		}
 	}
 
+	public boolean getDoubleMove(){
+		return double_move;
+	}
+
+	public void moveThePiece(){
+		has_moved = true;
+	}
+
+	public boolean getHasMoved(){
+		return has_moved;
+	}
+
 	public void setLocation(int x, int y){
 		loc_x = x;
 		loc_y = y;
@@ -95,7 +107,4 @@ class Piece {
 	public int getCostValue(){
 		return cost_value;
 	}
-
-
-
 }

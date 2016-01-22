@@ -12,7 +12,7 @@ class Move {
 
 	boolean capture = true;
 	boolean restricted = false;
-	public boolean doubleFirst = false;
+	boolean double_first = false;
 
 	String move_type;
 
@@ -35,7 +35,8 @@ class Move {
 				capture = true;
 				restricted = true;
 			}else if(special[i]==DOUBLEFIRST){
-				doubleFirst = true;
+				p("double first been set to true");
+				double_first = true;
 			}
 		}
 		calculateCost();
@@ -56,6 +57,10 @@ class Move {
 		}
 	}
 
+	public boolean hasDoubleFirstMove(){
+		return double_first;
+	}
+
 	public int getCost(){
 		return move_cost;
 	}
@@ -64,10 +69,20 @@ class Move {
 		return (move_type == "Jump");
 	}
 
+	public boolean canMoveToEmptySpace(){
+		return !canOnlyCapture();
+	}
+
+	public boolean canCaptureEnemyPiece(){
+		return !canOnlyMove();
+	}
+
 	public boolean canOnlyMove(){
 		return restricted&&!capture;
 	}
 	public boolean canOnlyCapture(){
 		return restricted&&capture;
 	}
+
+	public static void p(Object o){System.out.println(o);}
 }
