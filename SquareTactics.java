@@ -227,11 +227,6 @@ class SquareTactics {
 		ArrayList<BoardMoves> tempMoves = new ArrayList<BoardMoves>();
 		for (Move move : current_piece.moves) {
 
-			if(!simulated){
-				p("move.hasDoubleFirstMove() "+move.hasDoubleFirstMove());
-				p("current_piece.getHasMoved() "+current_piece.getHasMoved());
-			}
-
 			int move_number = 1;
 			int temp_x = x;
 			int temp_y = y;
@@ -257,6 +252,7 @@ class SquareTactics {
 				}
 
 				if(temp_x<=7&&temp_x>=0&&temp_y<=7&&temp_y>=0){
+
 					// not out of bounds
 					Piece temp_piece = _board.get(temp_x, temp_y);
 
@@ -264,7 +260,6 @@ class SquareTactics {
 						// there is no piece there
 						if(move.canMoveToEmptySpace()){
 							tempMoves.add(new BoardMoves(temp_x, temp_y, move.move_type, move));
-							move_number++;
 						}else{
 							end_loop = true;
 						}
@@ -290,12 +285,12 @@ class SquareTactics {
 
 					}
 
-
 					if(move.move_type == "Jump" || move.move_type == "Step"){
+
 						if(move_number == 1){
 
 							if(move.hasDoubleFirstMove() && !current_piece.getHasMoved()){
-								p("move is a double first move and the piece has not moved");
+								// move is a double first move and the piece has not moved
 								// continue loop
 							}else if(current_piece.getDoubleMove()){
 								// continue loop
@@ -308,6 +303,8 @@ class SquareTactics {
 					}else if(move.move_type == "slide"){
 						// continue loop
 					}
+
+					move_number++;
 				}else{
 					end_loop=true;
 				}

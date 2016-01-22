@@ -44,15 +44,12 @@ class Move {
 
 	private void calculateCost(){
 		if(move_type == "Step"){
-			System.out.println("step move");
 			move_cost++;
 		}
 		if(move_type == "Slide"){
-			System.out.println("slide move");
 			move_cost+=2;
 		}
 		if(move_type == "Jump"){
-			System.out.println("slide move");
 			move_cost++;
 		}
 	}
