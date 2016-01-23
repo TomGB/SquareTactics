@@ -251,7 +251,16 @@ class SquareTactics {
 					}
 				}
 
-				if(temp_x<=7&&temp_x>=0&&temp_y<=7&&temp_y>=0){
+				boolean out_of_bounds = true;
+
+				if(_board == editMovesBoard){
+					if(temp_x<=4&&temp_x>=0&&temp_y<=4&&temp_y>=0)
+						out_of_bounds = false;
+				}else if(temp_x<=7&&temp_x>=0&&temp_y<=7&&temp_y>=0){
+					out_of_bounds = false;
+				}
+
+				if(!out_of_bounds){
 
 					// not out of bounds
 					Piece temp_piece = _board.get(temp_x, temp_y);
@@ -262,6 +271,13 @@ class SquareTactics {
 							tempMoves.add(new BoardMoves(temp_x, temp_y, move.move_type, move));
 						}else{
 							end_loop = true;
+						}
+
+						if(_board == editMovesBoard){
+							if(move.canOnlyCapture()){
+								tempMoves.add(new BoardMoves(temp_x, temp_y, move.move_type, move));
+								end_loop = true;
+							}
 						}
 					}else if(temp_piece.getColor() == current_piece.getColor()){
 						// piece is friendly
