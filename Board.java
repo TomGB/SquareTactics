@@ -27,12 +27,12 @@ class Board {
 		}
 	}
 
-	public void setUp(){
+	public void setUp(Army black_army, Army white_army){
 		history = new ArrayList<Piece[][]>();
 		turnNum=0;
 
-		pieces = new DeathFromAbove().loadPieces('l');
-		Piece other_pieces[][] = new DeathFromAbove().loadPieces('r');
+		pieces = black_army.loadPieces('l');
+		Piece other_pieces[][] = white_army.loadPieces('r');
 
 		for (int i=0; i<8; i++) {
 			for (int j=0; j<8; j++) {
@@ -42,7 +42,6 @@ class Board {
 				}
 			}
 		}
-		// pieces = new DeathFromAbove().loadPieces();
 	}
 
 	public int getArmyScore(){

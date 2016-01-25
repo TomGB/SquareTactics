@@ -27,7 +27,7 @@ public class UserInteraction extends JFrame{
 	int frameY = 70;
 	Font f = new Font("Dialog", Font.PLAIN, 16);
 
-	TextBox reset,load,save,rules,undo,startgame, editarmy, blackWinText,whiteWinText,whiteTurnText,blackTurnText;
+	TextBox reset,load,save,rules,undo,start_chess_game, start_dfa_game, editarmy, blackWinText,whiteWinText,whiteTurnText,blackTurnText;
 
 	String 	rulesText = "Square Tactics is similar to chess in that you must put\nthe opponents King in check mate.\nThis is where the similarities end!";
 
@@ -108,14 +108,25 @@ public class UserInteraction extends JFrame{
 				squaretactics.undo();
 			}
 		};
-		startgame = new TextBox(squaretactics, 70,10,300,40, "Start Default Chess Game"){
+		start_chess_game = new TextBox(squaretactics, 70,80,300,40, "Start Chess Game"){
 			public void do_action(){
 				p("Start Default Chess Game");
 				squaretactics.current_stage = "in game";
-				squaretactics.myGUI.repaint();
+				squaretactics.setBlackArmy(new Chess());
+				squaretactics.setWhiteArmy(new Chess());
+				squaretactics.reset();
 			}
 		};
-		editarmy = new TextBox(squaretactics, 70,80,300,40,"Edit Army"){
+		start_dfa_game = new TextBox(squaretactics, 70,150,300,40, "Start Death From Above Game"){
+			public void do_action(){
+				p("Start Death From Above Chess Game");
+				squaretactics.current_stage = "in game";
+				squaretactics.setBlackArmy(new DeathFromAbove());
+				squaretactics.setWhiteArmy(new DeathFromAbove());
+				squaretactics.reset();
+			}
+		};
+		editarmy = new TextBox(squaretactics, 70,220,300,40,"Edit Army"){
 			public void do_action(){
 				p("edit army");
 				squaretactics.current_stage = "edit army";
@@ -148,7 +159,8 @@ public class UserInteraction extends JFrame{
 
 				if(squaretactics.current_stage == "main menu"){
 					g.drawImage(background,50,50,boardWidth-100-3,boardWidth-100-3,null);
-					startgame.set_visible(true);
+					start_chess_game.set_visible(true);
+					start_dfa_game.set_visible(true);
 					editarmy.set_visible(true);
 
 				}else if(squaretactics.current_stage == "in game"){

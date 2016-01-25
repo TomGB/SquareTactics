@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 class SquareTactics {
 
+	Army black_army, white_army;
+
 	UserInteraction myGUI;
 
 	int boardWidth = 8, boardHeight = 8;
@@ -18,7 +20,7 @@ class SquareTactics {
 	boolean whiteTurn=true, rules=false, checkMate = false;
 	boolean debug=false, moveDebug = false;
 	String current_stage = "main menu";
-	// ArtificialPlayer ai;
+	ArtificialPlayer ai;
 
 	ArrayList<BoardMoves> pinningKing = new ArrayList<BoardMoves>();
 	ArrayList<BoardMoves> pinningTemp = new ArrayList<BoardMoves>();
@@ -29,11 +31,7 @@ class SquareTactics {
 	int selX, selY;
 
 	public SquareTactics(){
-		// ai = new ArtificialPlayer(this);
-		board.clear();
-		board.setUp();
-		editArmyBoard.clear();
-		editArmyBoard.setUp();
+		ai = new ArtificialPlayer(this);
 		editMovesBoard.clear();
 		myGUI = new UserInteraction(this);
 	}
@@ -43,9 +41,16 @@ class SquareTactics {
 		selectedPiece = null;
 		pinningKing.clear();
 		possibleMoves = null;
-		board.setUp();
+		board.setUp(black_army, white_army);
 		whiteTurn=true;
 		myGUI.repaint();
+	}
+
+	public void setBlackArmy(Army black_army){
+		this.black_army = black_army;
+	}
+	public void setWhiteArmy(Army white_army){
+		this.white_army = white_army;
 	}
 
 	/*
@@ -90,9 +95,9 @@ class SquareTactics {
 					}
 					selectedPiece = null;
 					whiteTurn = !whiteTurn;
-					// if(!whiteTurn){
-					// 	ai.takeTurn();
-					// }
+					if(!whiteTurn){
+						ai.takeTurn();
+					}
 				}
 			}
 		}else if(current_stage == "edit army"){

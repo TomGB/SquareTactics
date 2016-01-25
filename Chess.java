@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
 
-class Chess {
+class Chess implements Army{
 
 	Piece pieces[][];
 

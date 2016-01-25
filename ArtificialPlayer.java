@@ -14,7 +14,7 @@ class ArtificialPlayer {
 		Collections.shuffle(myPieces);
 
 		for (Piece piece : myPieces) {
-			game.update(piece.locX,piece.locY);
+			game.update(piece.loc_x,piece.loc_y);
 			if(game.possibleMoves.size()>0){
 
 				Collections.shuffle(game.possibleMoves);
