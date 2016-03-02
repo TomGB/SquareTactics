@@ -9,3 +9,7 @@ Execute the Tafl.class file using Java
 e.g.
 Java Tafl
 
+TODO:
+
+Create army page
+AI
