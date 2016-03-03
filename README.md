@@ -13,3 +13,4 @@ TODO:
 
 Create army page
 AI
+work on separating out classes and methods as code is quite hard to navigate and understand
